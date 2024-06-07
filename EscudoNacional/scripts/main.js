@@ -305,7 +305,7 @@ function setAlertasIcons() {
 
   $alertasIcons.innerHTML = "";
 
-  console.log(SIGNALS);
+  //console.log(SIGNALS);
 
   SIGNALS.forEach((signal) => {
     switch (signal.tipoSignal) {
@@ -380,7 +380,7 @@ function createBombaCarrusel(SIGNAL) {
   imgBomba.nombre = SIGNAL.nombre;
   imgBomba.enLinea = SIGNAL.valor;
 
-  console.log(SIGNAL);
+  //console.log(SIGNAL);
 
   div.classList.add("item__bomba");
   spanEstado.classList.add("itemBombaStatus");
