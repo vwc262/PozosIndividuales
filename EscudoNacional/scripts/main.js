@@ -152,11 +152,12 @@ function setSeñales() {
   const SIGNALS = DATA_GLOBAL.signals;
   const $TBody = document.getElementById("señales-tbody");
 
+  let voltajeCounter = 0; // Contador para señales de voltaje
+  let corrienteCounter = 0; // Contador para señales de Corriente
+
   $TBody.innerHTML = "";
 
-  //console.log(SIGNALS);
-
-  const excludedTypes = [7, 11, 12, 13, 14, 15]; // Tipos de señal a excluir
+  const excludedTypes = [11, 12, 13, 14, 15]; // Tipos de señal a excluir
 
   SIGNALS.forEach((signal) => {
     if (excludedTypes.includes(signal.tipoSignal)) {
@@ -164,31 +165,106 @@ function setSeñales() {
     }
 
     const $TR = document.createElement("tr");
+    const $TDName = document.createElement("td");
+    const $TDValue = document.createElement("td");
 
+    // Asignar clase al TR
     const className = signal.nombre
       .replace(/[0-9]/g, "")
       .replace(/\s+/g, "")
       .toLowerCase();
     $TR.classList.add(className);
 
-    const $TDName = document.createElement("td");
-    if (signal.tipoSignal === 19) {
-      $TDName.textContent = "Factor de Potencia";
-    } else {
-      $TDName.textContent = signal.nombre.replace(/[0-9]/g, "");
+    // Nombres y valores
+    switch (signal.tipoSignal) {
+      case 7:
+        $TDName.textContent = "Estado Bomba";
+        switch (signal.valor) {
+          case 0:
+            $TDValue.textContent = "---";
+            break;
+          case 1:
+            $TDValue.textContent = "Encendida";
+            break;
+          case 2:
+            $TDValue.textContent = "Apagada";
+            break;
+          case 3:
+            $TDValue.textContent = "Falla";
+            break;
+        }
+        break;
+
+      case 8:
+        $TDName.textContent = "Estado Perilla";
+        switch (signal.valor) {
+          case 0:
+            $TDValue.textContent = "Off";
+            break;
+          case 1:
+            $TDValue.textContent = "Remoto";
+            break;
+          case 2:
+            $TDValue.textContent = "Local";
+            break;
+        }
+        break;
+
+      case 10:
+        $TDName.textContent = "Voltaje Bateria";
+        $TDValue.textContent = `${signal.valor} V`;
+        break;
+
+      case 16:
+        $TDName.textContent = `Voltaje ${String.fromCharCode(
+          65 + voltajeCounter
+        )}`;
+        voltajeCounter++;
+        $TDValue.textContent = `${signal.valor} V`;
+        break;
+
+      case 17:
+        $TDName.textContent = `Corriente ${String.fromCharCode(
+          65 + corrienteCounter
+        )}`;
+        corrienteCounter++;
+        $TDValue.textContent = `${signal.valor} A`;
+        break;
+
+      case 18:
+        $TDName.textContent = signal.nombre.replace(/[0-9]/g, "");
+        $TDValue.textContent = `${signal.valor} kW`;
+        break;
+
+      case 19:
+        $TDName.textContent = "Factor de Potencia";
+        $TDValue.textContent = `${signal.valor} %`;
+        break;
+
+      default:
+        $TDName.textContent = signal.nombre.replace(/[0-9]/g, "");
+        switch (signal.tipoSignal) {
+          case 2:
+            $TDValue.textContent = `${signal.valor} kg/cm²`;
+            break;
+          case 3:
+            $TDValue.textContent = `${signal.valor} l/s`;
+            break;
+          case 4:
+            $TDValue.textContent = `${signal.valor} m³`;
+            break;
+          default:
+            $TDValue.textContent = `${signal.valor}`;
+        }
     }
 
-    const $TDValue = document.createElement("td");
-
+    // Si el valor está fuera de rango
     if (signal.dentroRango == 0) {
       $TDValue.textContent = "- - -";
-    } else {
-      $TDValue.textContent = signal.valor;
     }
 
     $TR.appendChild($TDName);
     $TR.appendChild($TDValue);
-
     $TBody.appendChild($TR);
   });
 }
