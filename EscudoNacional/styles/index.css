@@ -1,0 +1,268 @@
+:root {
+  --goldenColor: goldenrod;
+  --onlineColorTXT: green;
+  --offlineColorTXT: red;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+
+header {
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 1) 0%,
+    rgb(35 41 46) 22%,
+    rgb(36 44 58) 68%,
+    rgb(72 92 139) 84%,
+    rgb(113 139 182) 100%,
+    rgb(132 162 217) 100%
+  );
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+}
+
+nav {
+  background: linear-gradient(
+    90deg,
+    rgb(36 53 69) 0%,
+    rgb(21 21 22 / 94%) 35%,
+    rgb(14 83 97 / 99%) 70%,
+    rgb(36 49 52) 100%
+  );
+  height: 45px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+}
+
+main {
+  background: url(https://virtualwavecontrol.com.mx/RecursosWeb/Client/PozosSistemaLerma/Sitios/LN%20124/Particular/fondo.jpg?v=1);
+  background-size: cover;
+  background-repeat: no-repeat;
+  flex: 1;
+}
+
+.panelBombasIcon img {
+  width: 65px;
+  transition: opacity 0.4s ease;
+  cursor: pointer;
+}
+
+.panelBombasIcon img:hover {
+  opacity: 0.6;
+}
+
+.alertasIcons img {
+  width: 20px;
+  height: 25px;
+}
+
+.alertasIcons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  gap: 10px;
+}
+
+.header__container {
+  color: white;
+  text-align: center;
+}
+
+.header__container h1 {
+  font-size: 2vh;
+  text-shadow: -2px 0px 3px #817676;
+  font-weight: bold;
+}
+
+.header__datos span {
+  font-size: 1vh;
+  color: var(--goldenColor);
+}
+
+#header__status {
+  color: var(--offlineColorTXT);
+}
+
+.header__buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+}
+
+.header__buttons img {
+  width: 20px;
+  height: 20px;
+}
+
+.header__buttons button {
+  border: none;
+  background: none;
+  color: white;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  gap: 5px;
+  transition: color 0.4s ease;
+}
+
+#logoutButton {
+  display: none;
+}
+
+.header__buttons button:hover {
+  color: var(--goldenColor);
+}
+
+.mapActive,
+.tableActive {
+  transform: scaleX(1) !important;
+}
+
+#map {
+  width: 100%;
+  height: 100%;
+}
+
+.imgBombaSection {
+  width: 100%;
+  height: 100%;
+}
+
+.tablaSeñales,
+.map__Container {
+  height: 500px;
+  width: 50%;
+  position: fixed;
+  top: 95px;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  transform: scaleX(0);
+  transform-origin: left top;
+  transition: transform 0.4s ease;
+}
+
+.map__Container {
+  height: 500px;
+  width: 25%;
+  position: fixed;
+  top: 95px;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  transform: scaleX(0);
+  transform-origin: left top;
+  transition: transform 0.4s ease;
+}
+
+.table_component {
+  overflow: auto;
+  width: 25%;
+}
+
+.table_component thead {
+  width: 100%;
+  position: sticky;
+  top: 0;
+}
+
+.table_component table {
+  border: 1px solid #dededf;
+  height: 100%;
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  border-spacing: 1px;
+  text-align: left;
+  text-align: center;
+}
+
+.table_component th {
+  border: 1px solid #dededf;
+  background-color: #eceff1;
+  color: #000000;
+  padding: 5px;
+}
+
+.table_component td {
+  border: 1px solid #dededf;
+  color: #000000;
+  padding: 5px;
+}
+
+.presion {
+  background-color: #a49a9a;
+}
+.gasto {
+  background-color: #adb49e;
+}
+.totalizado {
+  background-color: #c0c8db;
+}
+.bomba {
+  background-color: #99caca;
+}
+.perillabomba {
+  background-color: #e594cf;
+}
+.voltaje {
+  background-color: #8bbfa5;
+}
+.enlace {
+  background-color: #dcde7d;
+}
+.fallaac {
+  background-color: #47bdad;
+}
+.tiempo {
+  background-color: #886ec5;
+}
+.mantenimiento {
+  background-color: #2e7f8a;
+}
+.puertaabierta {
+  background-color: #b161bc;
+}
+.voltajerango {
+  background-color: #e38686;
+}
+.corrienterango {
+  background-color: #b99158;
+}
+.potenciatotal {
+  background-color: #8a95d5;
+}
+.factorpotencia {
+  background-color: #6ad091;
+}
+
+@media only screen and (max-width: 600px) {
+  .map__Container {
+    width: 100%;
+  }
+
+  .table_component {
+    overflow: auto;
+    width: 100%;
+  }
+}

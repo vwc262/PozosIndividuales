@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Escudo Nacional</title>
+
+  <link rel="stylesheet" href="./styles/index.css">
+  <link rel="stylesheet" href="./styles/modal.css">
+  <link rel="stylesheet" href="./styles/arranqueParo.css">
+
+  <script src="./scripts/APIService.js"></script>
+</head>
+
+<body>
+
+  <header>
+    <div class="header__buttons">
+      <button id="mapaButton">Mapa</button>
+      <button id="tablaButton">Tabla</button>
+    </div>
+    <div class="header__container">
+      <h1 class="header_title"></h1>
+      <div class="header__datos">
+        <span id="header__date"></span>
+        <span id="header__status"></span>
+      </div>
+    </div>
+    <div class="header__buttons">
+      <button id="loginButton"><img
+          src="https://virtualwavecontrol.com.mx/RecursosWeb/Client/PozosSistemaLerma/Control/login_btn.png?v=undefined">Login</button>
+      <button id="logoutButton"><img
+          src="https://virtualwavecontrol.com.mx/RecursosWeb/Client/PozosSistemaLerma/Control/login_btn.png?v=undefined">Logout</button>
+    </div>
+  </header>
+
+  <nav>
+    <div class="panelBombasIcon">
+      <img src="https://virtualwavecontrol.com.mx/RecursosWeb/Client/PozosSistemaLerma/Control/controlPanel.png?v=1">
+    </div>
+    <div class="alertasIcons">
+    </div>
+  </nav>
+  <main>
+    <div class="imgBombaSection"></div>
+  </main>
+
+  <section class="map__Container">
+    <div id="map"></div>
+  </section>
+
+  <section class="table_component tablaSeñales">
+    <table>
+      <thead>
+        <tr>
+          <th>Señal</th>
+          <th>Valor</th>
+        </tr>
+      </thead>
+      <tbody id="señales-tbody">
+
+      </tbody>
+    </table>
+  </section>
+
+  <section class="arranque__paro">
+    <div class="base">
+      <img class="baseImg"
+        src="https://virtualwavecontrol.com.mx/RecursosWeb/WebCore24/TanquesPadierna/Control/transition_inicio.png?v=3.7">
+    </div>
+    <div class="panel">
+      <div class="arranque__header">
+        <span>Control Bombas</span>
+        <div class="arranque__closeBtn"></div>
+      </div>
+      <div class="arranque__bombas">
+
+      </div>
+      <div class="arranque__buttons">
+        <div class="accionButtons">
+          <span class="encenderTXT">Apagar</span>
+          <img class="accionImg"
+            src="https://virtualwavecontrol.com.mx/RecursosWeb/Client/PozosSistemaLerma/Control/BTN_ON.png?v=1">
+          <span class="apagarTXT">Encender</span>
+        </div>
+        <div class="confirmarButtons">
+          <div class="buttonConfirmar">
+          </div>
+          <span class="confirmarTXT">Encender B1</span>
+        </div>
+      </div>
+  </section>
+
+  <div class="modalLogin">
+    <div id="imgModal" class="modal__container">
+      <div class="modal__text">
+        <h2 class="modal__title">Login</h2>
+        <div class="datosLoginContainer">
+          <div class="NombreUsuario">Usuario: <input id="usuario" type="text"></div>
+          <div class="ContraseñaUsuario">Contraseña: <input id="password" type="password"> </div>
+        </div>
+        <div class="modal__buttons">
+          <a href="#" class="modal__closeLogin">Cerrar</a>
+          <a href="#" class="modal__confirmarLogin">Confirmar</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="modal">
+    <div id="imgModal" class="modal__container">
+      <div class="modal__text">
+        <h2 class="modal__title2"></h2>
+        <p class="modal__paragraph2" id="notaInput" type="text">
+        <div class="modal__buttons">
+          <a href="#" class="modal__close2">Cerrar</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</body>
+<script type="module" src="./scripts/main.js"></script>
+
+<script>(g => { var h, a, k, p = "The Google Maps JavaScript API", c = "google", l = "importLibrary", q = "__ib__", m = document, b = window; b = b[c] || (b[c] = {}); var d = b.maps || (b.maps = {}), r = new Set, e = new URLSearchParams, u = () => h || (h = new Promise(async (f, n) => { await (a = m.createElement("script")); e.set("libraries", [...r] + ""); for (k in g) e.set(k.replace(/[A-Z]/g, t => "_" + t[0].toLowerCase()), g[k]); e.set("callback", c + ".maps." + q); a.src = `https://maps.${c}apis.com/maps/api/js?` + e; d[q] = f; a.onerror = () => h = n(Error(p + " could not load.")); a.nonce = m.querySelector("script[nonce]")?.nonce || ""; m.head.append(a) })); d[l] ? console.warn(p + " only loads once. Ignoring:", g) : d[l] = (f, ...n) => r.add(f) && u().then(() => d[l](f, ...n)) })
+    ({ key: "AIzaSyADj-4tE-dSFY6D83ytGt98HzpR9QBwX98", v: "beta" });</script>
+
+
+</html>
