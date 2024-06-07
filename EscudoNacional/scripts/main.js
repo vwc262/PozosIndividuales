@@ -178,7 +178,7 @@ function setSeñales() {
     // Nombres y valores
     switch (signal.tipoSignal) {
       case 7:
-        $TDName.textContent = "Estado Bomba";
+        $TDName.textContent = "Estado bomba";
         switch (signal.valor) {
           case 0:
             $TDValue.textContent = "---";
@@ -196,7 +196,7 @@ function setSeñales() {
         break;
 
       case 8:
-        $TDName.textContent = "Estado Perilla";
+        $TDName.textContent = "Estado perilla";
         switch (signal.valor) {
           case 0:
             $TDValue.textContent = "Off";
@@ -211,7 +211,7 @@ function setSeñales() {
         break;
 
       case 10:
-        $TDName.textContent = "Voltaje Bateria";
+        $TDName.textContent = "Voltaje bateria";
         $TDValue.textContent = `${signal.valor} V`;
         break;
 
@@ -232,12 +232,13 @@ function setSeñales() {
         break;
 
       case 18:
-        $TDName.textContent = signal.nombre.replace(/[0-9]/g, "");
+        // $TDName.textContent = signal.nombre.replace(/[0-9]/g, "");
+        $TDName.textContent = "Potencia total";
         $TDValue.textContent = `${signal.valor} kW`;
         break;
 
       case 19:
-        $TDName.textContent = "Factor de Potencia";
+        $TDName.textContent = "Factor de potencia";
         $TDValue.textContent = `${signal.valor} %`;
         break;
 
@@ -245,6 +246,7 @@ function setSeñales() {
         $TDName.textContent = signal.nombre.replace(/[0-9]/g, "");
         switch (signal.tipoSignal) {
           case 2:
+            $TDName.textContent = "Presión";
             $TDValue.textContent = `${signal.valor} kg/cm²`;
             break;
           case 3:

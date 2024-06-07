@@ -33,7 +33,7 @@ header {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 10px;
+  padding: 5px;
 }
 
 nav {
@@ -94,7 +94,7 @@ main {
 }
 
 .header__datos span {
-  font-size: 1.5vh;
+  font-size: 1.9vh;
   color: var(--goldenColor);
 }
 
