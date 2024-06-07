@@ -260,8 +260,8 @@ function setSeñales() {
         }
     }
 
-    // Si el valor está fuera de rango
-    if (signal.dentroRango == 0) {
+    // Si el valor está fuera de rango para tipoSignal 1, 2, 3, 4
+    if (signal.dentroRango == 0 && [1, 2, 3, 4].includes(signal.tipoSignal)) {
       $TDValue.textContent = "- - -";
     }
 
@@ -305,7 +305,7 @@ function setAlertasIcons() {
 
   $alertasIcons.innerHTML = "";
 
-  //console.log(SIGNALS);
+  //Fconsole.log(SIGNALS);
 
   SIGNALS.forEach((signal) => {
     switch (signal.tipoSignal) {
