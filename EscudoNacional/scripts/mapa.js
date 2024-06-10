@@ -21,7 +21,7 @@ async function InitMap(DATA_GLOBAL) {
   const marker = new AdvancedMarkerView({
     map: map,
     position: MAP_POSITION,
-    title: "Sorpasso",
+    title: `${DATA_GLOBAL.nombre}`,
   });
 }
 

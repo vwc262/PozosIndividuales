@@ -248,4 +248,4 @@ async function ObtenerEstadoComando() {
   }, 2000);
 }
 
-export default InitParoArranque;
+export { InitParoArranque, hideArranqueParo };

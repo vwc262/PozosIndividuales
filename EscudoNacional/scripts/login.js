@@ -1,6 +1,7 @@
 import { Credentials } from "./Credentials.js";
 import { EnumProyecto, RequestType } from "./Enum.js";
 import { Fetcher } from "./Fetcher.js";
+import { hideArranqueParo } from "./arranqueYparo.js";
 
 // Constantes para los elementos del DOM
 const $modalLogin = document.querySelector(".modalLogin");
@@ -10,9 +11,13 @@ const $loginButton = document.querySelector("#loginButton");
 const $logoutButton = document.querySelector("#logoutButton");
 const USUARIO = document.querySelector("#usuario");
 const PASSWORD = document.querySelector("#password");
+const $arranqueContainer = document.querySelector(".arranque__paro");
 
 // Lista de usuarios permitidos
 const users = ["admin"];
+
+// Variable para el temporizador
+let logoutTimer;
 
 // Inicializar eventos de login y logout
 function initLogin() {
@@ -65,12 +70,28 @@ async function performLogin(username, password) {
       $modalLogin.classList.remove("modal--show");
       toggleVisibility($loginButton, false);
       toggleVisibility($logoutButton, true);
+
+      // temporizador de cierre de sesión automático
+      startLogoutTimer(username, password);
     } else {
       alert(LOGIN_RESULT.message);
     }
   } catch (error) {
     console.error("Error en el login:", error);
   }
+}
+
+function startLogoutTimer(username, password) {
+  // Limpiar temporizador
+  clearTimeout(logoutTimer);
+
+  // cerrar sesión después de 10 minutos (600,000 ms)
+  logoutTimer = setTimeout(() => {
+    performLogout(username, password);
+    alert(
+      "Sesión cerrada automáticamente después de 10 minutos de inactividad."
+    );
+  }, 600000); // 10 minutos
 }
 
 async function performLogout(username, password) {
@@ -87,18 +108,27 @@ async function performLogout(username, password) {
       toggleVisibility($loginButton, true);
       toggleVisibility($logoutButton, false);
       Fetcher.Instance.isLogged = false;
+
+      // Limpiar el temporizador de cierre de sesión
+      clearTimeout(logoutTimer);
+
+      // si el contenedor de arranque está activo se esconde
+      if (
+        $arranqueContainer.style.opacity === "1" &&
+        $arranqueContainer.style.pointerEvents === "auto"
+      ) {
+        hideArranqueParo();
+      }
     }
   } catch (error) {
     console.error("Error en el logout:", error);
   }
 }
 
-// Cambiar la visibilidad de un elemento
 function toggleVisibility(element, show) {
   element.style.display = show ? "flex" : "none";
 }
 
-// Cerrar sesión antes de recargar la página
 window.onbeforeunload = function () {
   if (Fetcher.Instance.isLogged) {
     $logoutButton.click();

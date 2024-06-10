@@ -1,6 +1,6 @@
 import { fetchTablaSimplificada } from "./APIService.js";
 import { EnumProyecto, EnumValorBomba } from "./Enum.js";
-import InitParoArranque from "./arranqueYparo.js";
+import { InitParoArranque } from "./arranqueYparo.js";
 import { initLogin } from "./login.js";
 import InitMap from "./mapa.js";
 

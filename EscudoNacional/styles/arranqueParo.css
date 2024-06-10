@@ -169,10 +169,10 @@
 
   .panel {
     background: url(https://virtualwavecontrol.com.mx/RecursosWeb/Client/PozosSistemaLerma/Control/panelControl.png?v=1);
-    width: 68%;
-    height: 77%;
+    width: 67%;
+    height: 73%;
     position: absolute;
-    top: 92px;
+    top: 110px;
     background-size: cover;
     background-repeat: no-repeat;
     left: 67px;
@@ -188,6 +188,6 @@
   }
 
   .arranque__bombas {
-    height: 235px;
+    height: 200px;
   }
 }
