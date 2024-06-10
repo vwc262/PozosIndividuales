@@ -26,6 +26,9 @@ window.onload = () => {
 };
 
 function INIT() {
+  initLogin();
+  InitParoArranque(PROYECTO);
+  ClickEvents();
   fetchTablaSimplificada(PROYECTO)
     .then((response) => {
       DATA_GLOBAL = response[0];
@@ -42,7 +45,7 @@ function INIT() {
       .then((response) => {
         DATA_GLOBAL = response[0];
 
-        //console.log(DATA_GLOBAL);
+        console.log(DATA_GLOBAL);
 
         UpdateUI(DATA_GLOBAL);
       })
@@ -50,10 +53,6 @@ function INIT() {
         console.error("Error:", error);
       });
   }, 10000);
-
-  initLogin();
-  InitParoArranque(PROYECTO);
-  ClickEvents();
 }
 
 function UpdateUI(DATA) {
