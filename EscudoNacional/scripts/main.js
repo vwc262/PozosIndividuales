@@ -1,4 +1,5 @@
-import { EnumValorBomba } from "./Enum.js";
+import { fetchTablaSimplificada } from "./APIService.js";
+import { EnumProyecto, EnumValorBomba } from "./Enum.js";
 import InitParoArranque from "./arranqueYparo.js";
 import { initLogin } from "./login.js";
 import InitMap from "./mapa.js";
@@ -18,28 +19,26 @@ const $Map = document.querySelector(".map__Container");
 const $alertasIcons = document.querySelector(".alertasIcons");
 const $arranque__bombas = document.querySelector(".arranque__bombas");
 
+let PROYECTO = EnumProyecto.Escudo;
+
 window.onload = () => {
-  //console.log("pagina cargada");
   INIT();
-  initLogin();
-  InitMap();
-  InitParoArranque();
 };
 
 function INIT() {
-  ClickEvents();
-  fetchTablaSimplificada()
+  fetchTablaSimplificada(PROYECTO)
     .then((response) => {
       DATA_GLOBAL = response[0];
 
       UpdateUI(DATA_GLOBAL);
+      InitMap(DATA_GLOBAL);
     })
     .catch((error) => {
       console.error("Error:", error);
     });
 
   setInterval(() => {
-    fetchTablaSimplificada()
+    fetchTablaSimplificada(PROYECTO)
       .then((response) => {
         DATA_GLOBAL = response[0];
 
@@ -51,6 +50,10 @@ function INIT() {
         console.error("Error:", error);
       });
   }, 10000);
+
+  initLogin();
+  InitParoArranque(PROYECTO);
+  ClickEvents();
 }
 
 function UpdateUI(DATA) {
@@ -157,7 +160,7 @@ function setSeñales() {
 
   $TBody.innerHTML = "";
 
-  const excludedTypes = [11, 12, 13, 14, 15]; // Tipos de señal a excluir
+  const excludedTypes = [11, 12, 13, 14, 15]; // Tipos de señal que no se agregan
 
   SIGNALS.forEach((signal) => {
     if (excludedTypes.includes(signal.tipoSignal)) {
@@ -426,3 +429,5 @@ function createBombaCarrusel(SIGNAL) {
 
   $arranque__bombas.append(div);
 }
+
+export { INIT };

@@ -9,8 +9,10 @@ const RequestType = {
 /**
  * @returns {EnumProyecto}
  */
+
 const EnumProyecto = {
-  Default: 3, // num proyecto de lerma
+  Default: 0, // enum proyecto de lerma
+  Sorpasso: 11,
   Escudo: 12,
 };
 

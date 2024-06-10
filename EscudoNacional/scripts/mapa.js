@@ -1,7 +1,12 @@
+import { fetchTablaSimplificada } from "./APIService.js";
+
 let map;
 
-async function InitMap() {
-  const MAP_POSITION = { lat: 19.246894, lng: -99.010269 };
+async function InitMap(DATA_GLOBAL) {
+  const MAP_POSITION = {
+    lat: DATA_GLOBAL.latitud,
+    lng: DATA_GLOBAL.longitud,
+  };
 
   const { Map } = await google.maps.importLibrary("maps");
   const { AdvancedMarkerView } = await google.maps.importLibrary("marker");

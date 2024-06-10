@@ -1,13 +1,10 @@
-let domain = "http://localhost:65396";
-let folderRoot = "VWC/PozosSistemaLerma";
-let endpoint = "TablaSimplificada";
-let data = {};
-
-async function fetchTablaSimplificada() {
+async function fetchTablaSimplificada(PROYECTO) {
   const response = await fetch(
-    "https://virtualwavecontrol.com.mx/core24/crud/ReadSignalsEstacion?idProyecto=12"
+    `https://virtualwavecontrol.com.mx/core24/crud/ReadSignalsEstacion?idProyecto=${PROYECTO}`
   );
   const data = await response.json();
   //console.log(data);
   return data;
 }
+
+export { fetchTablaSimplificada };

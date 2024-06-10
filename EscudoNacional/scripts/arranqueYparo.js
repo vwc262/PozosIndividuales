@@ -27,12 +27,15 @@ const $closeModal = document.querySelector(".modal__close2");
 let codigo;
 let isOnState = true;
 
+let proyecto;
+
 const images = [
   "https://virtualwavecontrol.com.mx/RecursosWeb/Client/PozosSistemaLerma/Control/BTN_ON.png?v=1",
   "https://virtualwavecontrol.com.mx/RecursosWeb/Client/PozosSistemaLerma/Control/BTN_STOP.png?v=1",
 ];
 
-function InitParoArranque() {
+function InitParoArranque(PROYECTO) {
+  proyecto = PROYECTO;
   ClickEvents();
 }
 
@@ -121,13 +124,13 @@ async function RequestComando() {
   const codigo = ArmarCodigo();
 
   if (codigo === null) {
-    console.error("Error al armar el codigo");
+    console.error("Error al armar el código");
     return;
   }
 
   try {
     const COMANDO_RESULT = await Fetcher.Instance.RequestData(
-      `${EnumControllerMapeo.INSERTCOMANDO}?IdProyecto=${EnumProyecto.Escudo}`,
+      `${EnumControllerMapeo.INSERTCOMANDO}?IdProyecto=${proyecto}`,
       RequestType.POST,
       {
         Usuario: `web24-${usuario}`,
@@ -141,7 +144,7 @@ async function RequestComando() {
     if (COMANDO_RESULT.exito) {
       ObtenerEstadoComando();
     } else {
-      console.error("Error en la respuesta del comando", RESULT_COMANDO);
+      console.error("Error en la respuesta del comando", COMANDO_RESULT);
     }
   } catch (error) {
     console.error("Error al enviar el comando", error);
@@ -183,7 +186,7 @@ async function EnviarComando() {
   }
 }
 
-function ObtenerEstadoComando() {
+async function ObtenerEstadoComando() {
   let $Bomba = document.querySelector(".itemBombaImg");
 
   let ALERT_SETTED = false;
@@ -198,7 +201,7 @@ function ObtenerEstadoComando() {
   const _interval = setInterval(async () => {
     try {
       const RESULT_INTERVAL = await Fetcher.Instance.RequestData(
-        `${EnumControllerMapeo.READESTADOCOMANDO}?IdProyecto=${EnumProyecto.Escudo}`,
+        `${EnumControllerMapeo.READESTADOCOMANDO}?IdProyecto=${proyecto}`,
         RequestType.POST,
         {
           Usuario: `web24-${USUARIO_COMANDO}`,
