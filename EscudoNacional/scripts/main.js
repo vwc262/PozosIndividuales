@@ -45,7 +45,7 @@ function INIT() {
       .then((response) => {
         DATA_GLOBAL = response[0];
 
-        console.log(DATA_GLOBAL);
+        //console.log(DATA_GLOBAL);
 
         UpdateUI(DATA_GLOBAL);
       })
