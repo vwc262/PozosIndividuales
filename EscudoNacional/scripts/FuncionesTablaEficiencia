@@ -1,0 +1,47 @@
+var funcionesTabla = {
+    DiametroInternoDeLaTuberia: 0.20,
+    FrecuenciaDeRotacion: 1500,
+    NivelTuberiaDeDescarga: 0.75,
+    PerdidasDeFriccionEnLaColumna: 1.000,
+    NivelEstatico: function () {
+        return 59;
+    },
+    LecturaManometroDescarga: function (presion) {
+        return presion * 10;
+    },
+    PresionDescarga: function (CargaALaDescarga, CargaTotal) {
+        return CargaALaDescarga + CargaTotal;
+    },
+    AreaTuberiaDescarga: function (DiametroInternoTuberia) {
+        return DiametroInternoTuberia = Math.PI * DiametroInternoTuberia * DiametroInternoTuberia / 4;
+    },
+    Gasto: function (LecturaManometroDescarga) {
+        return LecturaManometroDescarga / 1000;
+    },
+    CargaDeVelocidad: function (Gasto, AreaTuberiaDescarga) {
+        return (Gasto / AreaTuberiaDescarga) * (Gasto / AreaTuberiaDescarga) / (2 * 9.81);
+    },
+    CargaALaDescarga: function (PresionDescarga, CargaDeVelocidad, PerdidasDeFriccionEnLaColumna) {
+        return PresionDescarga + CargaDeVelocidad + PerdidasDeFriccionEnLaColumna;
+    },
+    CargaTotal: function (NivelDimnamico, CargaALaDescarga) {
+        return NivelDimnamico + CargaALaDescarga;
+    },
+    PotenciaDeEntrada: function (CorrientePromedio, TensionPromedio, FactorDePotenciaPromedio) {
+        return Math.SQRT2(3) * CorrientePromedio * TensionPromedio * FactorDePotenciaPromedio / 1000;
+    },
+    PotenciaDeSalida: function (Gasto, CargaTotal) {
+        return 9.81 * Gasto * CargaTotal;
+    },
+    EficienciaElectromecanica: function (PotenciaDeSalida, PotenciaDeEntrada) {
+        return PotenciaDeSalida / PotenciaDeSalida;
+    },
+    Abatimiento: function (CargaDeVelocidad, PerdidasDeFriccionEnLaColumna) {
+        return CargaDeVelocidad - PerdidasDeFriccionEnLaColumna;
+    },
+    RendimientoHidraulico: function (Gasto, Abatimiento) {
+        return 1000 * Gasto / Abatimiento;
+    }
+};
+
+export default funcionesTabla;

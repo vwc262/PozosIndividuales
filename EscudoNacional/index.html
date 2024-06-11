@@ -121,6 +121,215 @@
     </div>
   </div>
 
+  <style>
+    table {
+      height: 600px;
+      width: 500px;
+      border-collapse: collapse;
+    }
+
+    th,
+    td {
+      border: 1px solid black;
+      padding: 8px;
+      text-align: center;
+    }
+
+    .constantes{
+      background-color: darkcyan;
+    }
+
+    .calculos{
+      background-color: beige;
+    }
+
+    .calculos-buenos{
+      background-color: darkkhaki;
+    }
+
+    .de-campo{
+      background-color: darkgreen;
+    }
+
+  </style>
+
+  <label>Cálculo de la eficiencia electrodinámica del pozo profundo</label>
+  <table>
+    <tbody>
+      <tr class="de-campo">
+        <td>5</td>
+        <td>Presión (kg/cm2)</td>
+        <td id="Presion_DeCampo">2.15</td>
+      </tr>
+      <tr class="de-campo">
+        <td>8</td>
+        <td>Gasto (l/s)</td>
+        <td id="Gasto_DeCampo">45.00</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr class="constantes">
+        <td>1</td>
+        <td>Diámetro interno de la tubería(m)</td>
+        <td id="DiametroInternoDeLaTuberia">0.20</td>
+      </tr>
+      <tr class="constantes">
+        <td>2</td>
+        <td>Frecuencia de rotación (rpm)</td>
+        <td id="FrecuenciaDeRotacion">1500</td>
+      </tr>
+      <tr class="de-campo">
+        <td>3</td>
+        <td>Nivel dinámico (m)</td>
+        <td id="Nivel_DeCampo">60</td>
+      </tr>
+      <tr class="calculos">
+        <td></td>
+        <td>Nivel estático(m)</td>
+        <td id="NivelEstatico">59</td>
+      </tr>
+      <tr class="constantes">
+        <td>4</td>
+        <td>Nivel tubería de descarga (m)</td>
+        <td id="NivelTuberiaDeDescarga">1.00</td>
+      </tr>
+      <tr class="calculos">
+        <td>5</td>
+        <td>Lectura manómetro de descarga (m)</td>
+        <td id="LecturaManometroDescarga">21.50</td>
+      </tr>
+      <tr class="calculos">
+        <td>6</td>
+        <td>Presión descarga (m)</td>
+        <td id="PresionDescarga">22.50</td>
+      </tr>
+      <tr class="calculos">
+        <td>7</td>
+        <td>Area tubería descarga (m2)</td>
+        <td id="AreaTuberiaDescarga">0.03</td>
+      </tr>
+      <tr class="calculos">
+        <td>8</td>
+        <td>Gasto (m3/s)</td>
+        <td id="Gasto">0.045</td>
+      </tr>
+      <tr class="calculos">
+        <td>9</td>
+        <td>Carga de velocidad (m)</td>
+        <td id="CargaDeVelocidad">0.105</td>
+      </tr>
+      <tr class="constantes">
+        <td>10</td>
+        <td>Pérdidas de fricción en la columna(m)</td>
+        <td id="PerdidasDeFriccionEnLaColumna">1.000</td>
+      </tr>
+      <tr class="calculos">
+        <td>11</td>
+        <td>Carga a la descarga (m)</td>
+        <td id="CargaALaDescarga">23.60</td>
+      </tr>
+      <tr class="calculos">
+        <td>12</td>
+        <td>Carga total</td>
+        <td id="CargaTotal">83.60</td>
+      </tr>
+      <tr class="calculos">
+        <td></td>
+        <td>Corriente A</td>
+        <td></td>
+      </tr>
+      <tr class="calculos">
+        <td></td>
+        <td>Corriente B</td>
+        <td></td>
+      </tr>
+      <tr class="calculos">
+        <td></td>
+        <td>Corriente C</td>
+        <td></td>
+      </tr>
+      <tr class="de-campo">
+        <td>13</td>
+        <td>Corriente promedio (A)</td>
+        <td id="Corriente_DeCampo">148</td>
+      </tr>
+      <tr class="calculos">
+        <td></td>
+        <td>Tensión AB</td>
+        <td></td>
+      </tr>
+      <tr class="calculos">
+        <td></td>
+        <td>Tensión AC</td>
+        <td></td>
+      </tr>
+      <tr class="calculos">
+        <td></td>
+        <td>tensión BC</td>
+        <td></td>
+      </tr>
+      <tr class="de-campo">
+        <td>14</td>
+        <td>Tensión promedio (V)</td>
+        <td id="Tension_DeCampo">455</td>
+      </tr>
+      <tr class="calculos">
+        <td></td>
+        <td>Factor de potencia A</td>
+        <td></td>
+      </tr>
+      <tr class="calculos">
+        <td></td>
+        <td>Factor de potencia B</td>
+        <td></td>
+      </tr>
+      <tr class="calculos">
+        <td></td>
+        <td>Factor de potencia C</td>
+        <td></td>
+      </tr>
+      <tr class="de-campo">
+        <td>15</td>
+        <td>Factor de potencia promedio</td>
+        <td id="FactorPotencia_DeCampo">1.00</td>
+      </tr>
+      <tr class="calculos">
+        <td>16</td>
+        <td>Potencia de entrada (kW)</td>
+        <td id="PotenciaDeEntrada">116.64</td>
+      </tr>
+      <tr class="calculos">
+        <td>17</td>
+        <td>Potencia de salida (kW)</td>
+        <td id="PotenciaDeSalida">36.91</td>
+      </tr>
+      <tr class="calculos-buenos">
+        <td>18</td>
+        <td>Eficiencia electromecánica (%)</td>
+        <td id="EficienciaElectromecanica">32%</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr class="calculos">
+        <td></td>
+        <td>Abatimiento (m)</td>
+        <td id="Abatimiento">1.00</td>
+      </tr>
+      <tr class="calculos-buenos">
+        <td></td>
+        <td>Rendimiento hidráulico (l/s/m)</td>
+        <td id="RendimientoHidraulico">45.00</td>
+      </tr>
+    </tbody>
+  </table>
+
+
 
 </body>
 <script type="module" src="./scripts/main.js"></script>
