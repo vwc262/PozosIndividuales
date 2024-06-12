@@ -218,12 +218,37 @@ main {
   padding: 5px;
 }
 
+#señalesCat,
+#calculoCat {
+  cursor: pointer;
+  transition: background 0.4s ease;
+}
+.constantes {
+  background-color: darkcyan;
+}
+
+.calculos {
+  background-color: beige;
+}
+
+.calculos-buenos {
+  background-color: darkkhaki;
+}
+
+.de-campo {
+  background-color: darkgreen;
+}
+
+.catActive {
+  background-color: #7ca6cb !important;
+}
+
 .nivel {
   background-color: #a9a86a;
 }
 
 .presion {
-  background-color: #a49a9a;
+  background-color: #c7acac;
 }
 .gasto {
   background-color: #adb49e;
