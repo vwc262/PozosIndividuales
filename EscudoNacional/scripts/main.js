@@ -109,15 +109,15 @@ const datosTabla = [
     celdas: ["Area tubería descarga (m2)", "0.02"],
     id: "AreaTuberiaDescarga",
   },
-  { clase: "calculos", celdas: ["Gasto (m3/s)", "0.0.54"], id: "Gasto" },
+  { clase: "calculos", celdas: ["Gasto (m3/s)", "0.054"], id: "Gasto" },
   {
     clase: "calculos",
-    celdas: ["Carga de velocidad (m)", "0.483"],
+    celdas: ["Carga de velocidad (m)", "0.48"],
     id: "CargaDeVelocidad",
   },
   {
     clase: "constantes",
-    celdas: ["Pérdidas de fricción en la columna(m)", "1.000"],
+    celdas: ["Pérdidas de fricción en la columna(m)", "1.00"],
     id: "PerdidasDeFriccionEnLaColumna",
   },
   {
