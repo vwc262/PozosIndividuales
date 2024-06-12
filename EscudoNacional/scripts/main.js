@@ -50,6 +50,12 @@ let RendimientoHidraulico;
 
 let PROYECTO = EnumProyecto.Escudo;
 
+if (PROYECTO != EnumProyecto.Escudo) {
+  console.log("hola");
+  $señalesCat.style.display = "none";
+  $calculoCat.style.display = "none";
+}
+
 // Datos de ejemplo
 const datosTabla = [
   {
