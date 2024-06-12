@@ -65,13 +65,13 @@ const datosTabla = [
   },
   {
     clase: "de-campo",
-    celdas: ["Gasto (l/s)", "45.00"],
+    celdas: ["Gasto (l/s)", "54.4"],
     id: "Gasto_DeCampo",
   },
   { clase: "", celdas: ["", ""] },
   {
     clase: "constantes",
-    celdas: ["Diámetro interno de la tubería(m)", "0.20"],
+    celdas: ["Diámetro interno de la tubería(m)", "0.15"],
     id: "DiametroInternoDeLaTuberia",
   },
   {
@@ -91,7 +91,7 @@ const datosTabla = [
   },
   {
     clase: "constantes",
-    celdas: ["Nivel tubería de descarga (m)", "1.00"],
+    celdas: ["Nivel tubería de descarga (m)", "0.75"],
     id: "NivelTuberiaDeDescarga",
   },
   {
@@ -101,18 +101,18 @@ const datosTabla = [
   },
   {
     clase: "calculos",
-    celdas: ["Presión descarga (m)", "22.50"],
+    celdas: ["Presión descarga (m)", "22.25"],
     id: "PresionDescarga",
   },
   {
     clase: "calculos",
-    celdas: ["Area tubería descarga (m2)", "0.03"],
+    celdas: ["Area tubería descarga (m2)", "0.02"],
     id: "AreaTuberiaDescarga",
   },
-  { clase: "calculos", celdas: ["Gasto (m3/s)", "0.045"], id: "Gasto" },
+  { clase: "calculos", celdas: ["Gasto (m3/s)", "0.0.54"], id: "Gasto" },
   {
     clase: "calculos",
-    celdas: ["Carga de velocidad (m)", "0.105"],
+    celdas: ["Carga de velocidad (m)", "0.483"],
     id: "CargaDeVelocidad",
   },
   {
@@ -122,12 +122,12 @@ const datosTabla = [
   },
   {
     clase: "calculos",
-    celdas: ["Carga a la descarga (m)", "23.60"],
+    celdas: ["Carga a la descarga (m)", "23.73"],
     id: "CargaALaDescarga",
   },
   {
     clase: "calculos",
-    celdas: ["Carga total", "83.60"],
+    celdas: ["Carga total", "83.73"],
     id: "CargaTotal",
   },
   { clase: "calculos", celdas: ["Corriente A", ""] },
@@ -161,12 +161,12 @@ const datosTabla = [
   },
   {
     clase: "calculos",
-    celdas: ["Potencia de salida (kW)", "36.91"],
+    celdas: ["Potencia de salida (kW)", "44.69"],
     id: "PotenciaDeSalida",
   },
   {
     clase: "calculos-buenos",
-    celdas: ["Eficiencia electromecánica (%)", "32%"],
+    celdas: ["Eficiencia electromecánica (%)", "38%"],
     id: "EficienciaElectromecanica",
   },
   { clase: "", celdas: ["", ""] },
@@ -177,7 +177,7 @@ const datosTabla = [
   },
   {
     clase: "calculos-buenos",
-    celdas: ["Rendimiento hidráulico (l/s/m)", "45.00"],
+    celdas: ["Rendimiento hidráulico (l/s/m)", "54.40"],
     id: "RendimientoHidraulico",
   },
 ];
