@@ -85,7 +85,7 @@ const datosTabla = [
     id: "Nivel_DeCampo",
   },
   {
-    clase: "calculos",
+    clase: "de-campo",
     celdas: ["Nivel estático(m)", "59"],
     id: "NivelEstatico",
   },

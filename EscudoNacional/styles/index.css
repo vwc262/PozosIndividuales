@@ -224,7 +224,7 @@ main {
   transition: background 0.4s ease;
 }
 .constantes {
-  background-color: rgb(41, 181, 181);
+  background-color: beige;
 }
 
 .calculos {
@@ -232,7 +232,7 @@ main {
 }
 
 .calculos-buenos {
-  background-color: darkkhaki;
+  background-color: rgb(229, 220, 90);
 }
 
 .de-campo {
