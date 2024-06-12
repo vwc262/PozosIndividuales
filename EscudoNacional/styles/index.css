@@ -263,7 +263,8 @@ main {
   background-color: #e594cf;
 }
 
-.voltaje {
+.voltaje,
+.tensión {
   background-color: #8bbfa5;
 }
 .enlace {
