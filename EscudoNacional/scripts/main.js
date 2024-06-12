@@ -336,6 +336,8 @@ function createTableSeñales() {
 
   $TBody.innerHTML = "";
 
+  console.log(SIGNALS);
+
   // Función para crear filas de señales
   const createSignalRow = (signal) => {
     const $TR = document.createElement("tr");
@@ -348,6 +350,11 @@ function createTableSeñales() {
 
     // Nombres y valores
     switch (signal.tipoSignal) {
+      case 1:
+        $TDName.textContent = signal.nombre;
+
+        $TDValue.textContent = `${signal.valor} m`;
+        break
       case 7:
         $TDName.textContent = "Estado bomba";
         switch (signal.valor) {
