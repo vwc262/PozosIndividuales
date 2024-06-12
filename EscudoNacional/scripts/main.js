@@ -69,16 +69,7 @@ const datosTabla = [
     id: "Gasto_DeCampo",
   },
   { clase: "", celdas: ["", ""] },
-  {
-    clase: "constantes",
-    celdas: ["Diámetro interno de la tubería(m)", "0.15"],
-    id: "DiametroInternoDeLaTuberia",
-  },
-  {
-    clase: "constantes",
-    celdas: ["Frecuencia de rotación (rpm)", "1500"],
-    id: "FrecuenciaDeRotacion",
-  },
+
   {
     clase: "de-campo",
     celdas: ["Nivel dinámico (m)", "60"],
@@ -89,6 +80,38 @@ const datosTabla = [
     celdas: ["Nivel estático(m)", "59"],
     id: "NivelEstatico",
   },
+
+  {
+    clase: "de-campo",
+    celdas: ["Corriente promedio (A)", "148"],
+    id: "Corriente_DeCampo",
+  },
+  {
+    clase: "de-campo",
+    celdas: ["Tensión promedio (V)", "455"],
+    id: "Tension_DeCampo",
+  },
+  {
+    clase: "calculos-buenos",
+    celdas: ["Eficiencia electromecánica (%)", "38%"],
+    id: "EficienciaElectromecanica",
+  },
+  {
+    clase: "calculos-buenos",
+    celdas: ["Rendimiento hidráulico (l/s/m)", "54.40"],
+    id: "RendimientoHidraulico",
+  },
+  {
+    clase: "constantes",
+    celdas: ["Frecuencia de rotación (rpm)", "1500"],
+    id: "FrecuenciaDeRotacion",
+  },
+  {
+    clase: "constantes",
+    celdas: ["Diámetro interno de la tubería(m)", "0.15"],
+    id: "DiametroInternoDeLaTuberia",
+  },
+
   {
     clase: "constantes",
     celdas: ["Nivel tubería de descarga (m)", "0.75"],
@@ -133,27 +156,15 @@ const datosTabla = [
   { clase: "calculos", celdas: ["Corriente A", ""] },
   { clase: "calculos", celdas: ["Corriente B", ""] },
   { clase: "calculos", celdas: ["Corriente C", ""] },
-  {
-    clase: "de-campo",
-    celdas: ["Corriente promedio (A)", "148"],
-    id: "Corriente_DeCampo",
-  },
+
   { clase: "calculos", celdas: ["Tensión AB", ""] },
   { clase: "calculos", celdas: ["Tensión AC", ""] },
   { clase: "calculos", celdas: ["tensión BC", ""] },
-  {
-    clase: "de-campo",
-    celdas: ["Tensión promedio (V)", "455"],
-    id: "Tension_DeCampo",
-  },
+
   { clase: "calculos", celdas: ["Factor de potencia A", ""] },
   { clase: "calculos", celdas: ["Factor de potencia B", ""] },
   { clase: "calculos", celdas: ["Factor de potencia C", ""] },
-  {
-    clase: "de-campo",
-    celdas: ["Factor de potencia promedio", "1.00"],
-    id: "FactorPotencia_DeCampo",
-  },
+
   {
     clase: "calculos",
     celdas: ["Potencia de entrada (kW)", "116.64"],
@@ -164,21 +175,12 @@ const datosTabla = [
     celdas: ["Potencia de salida (kW)", "44.69"],
     id: "PotenciaDeSalida",
   },
-  {
-    clase: "calculos-buenos",
-    celdas: ["Eficiencia electromecánica (%)", "38%"],
-    id: "EficienciaElectromecanica",
-  },
+
   { clase: "", celdas: ["", ""] },
   {
     clase: "calculos",
     celdas: ["Abatimiento (m)", "1.00"],
     id: "Abatimiento",
-  },
-  {
-    clase: "calculos-buenos",
-    celdas: ["Rendimiento hidráulico (l/s/m)", "54.40"],
-    id: "RendimientoHidraulico",
   },
 ];
 
