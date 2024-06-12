@@ -224,7 +224,7 @@ main {
   transition: background 0.4s ease;
 }
 .constantes {
-  background-color: darkcyan;
+  background-color: rgb(41, 181, 181);
 }
 
 .calculos {
@@ -236,7 +236,7 @@ main {
 }
 
 .de-campo {
-  background-color: darkgreen;
+  background-color: rgb(95, 220, 95);
 }
 
 .catActive {

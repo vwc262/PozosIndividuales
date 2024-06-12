@@ -9,8 +9,10 @@ var funcionesTabla = {
   LecturaManometroDescarga: function (presion) {
     return parseFloat(presion * 10).toFixed(2);
   },
-  PresionDescarga: function (CargaALaDescarga, CargaTotal) {
-    return parseFloat(CargaALaDescarga + CargaTotal).toFixed(2);
+  PresionDescarga: function (NivelTuberiaDeDescarga, LecturaManometroDescarga) {
+    return parseFloat(
+      NivelTuberiaDeDescarga + LecturaManometroDescarga
+    ).toFixed(2);
   },
   AreaTuberiaDescarga: function (DiametroInternoTuberia) {
     return parseFloat(
@@ -45,7 +47,7 @@ var funcionesTabla = {
     FactorDePotenciaPromedio
   ) {
     return parseFloat(
-      (Math.SQRT2(3) *
+      (Math.sqrt(3) *
         CorrientePromedio *
         TensionPromedio *
         FactorDePotenciaPromedio) /
@@ -56,7 +58,9 @@ var funcionesTabla = {
     return parseFloat(9.81 * Gasto * CargaTotal).toFixed(2);
   },
   EficienciaElectromecanica: function (PotenciaDeSalida, PotenciaDeEntrada) {
-    return parseFloat(PotenciaDeSalida / PotenciaDeSalida).toFixed(2);
+    return PotenciaDeEntrada != 0
+      ? parseFloat(PotenciaDeSalida / PotenciaDeEntrada).toFixed(2)
+      : 0;
   },
   Abatimiento: function (CargaDeVelocidad, PerdidasDeFriccionEnLaColumna) {
     return parseFloat(CargaDeVelocidad - PerdidasDeFriccionEnLaColumna).toFixed(
@@ -64,7 +68,9 @@ var funcionesTabla = {
     );
   },
   RendimientoHidraulico: function (Gasto, Abatimiento) {
-    return parseFloat((1000 * Gasto) / Abatimiento).toFixed(2);
+    return Abatimiento != 0
+      ? parseFloat((1000 * Gasto) / Abatimiento).toFixed(2)
+      : 0;
   },
 };
 

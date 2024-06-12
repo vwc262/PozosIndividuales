@@ -183,14 +183,15 @@ window.onload = () => {
 function INIT() {
   initLogin();
   InitParoArranque(PROYECTO);
-  ClickEvents();
   fetchTablaSimplificada(PROYECTO)
     .then((response) => {
       DATA_GLOBAL = response[0];
 
-      console.log(DATA_GLOBAL);
+      //console.log(DATA_GLOBAL);
 
       UpdateUI(DATA_GLOBAL);
+      ClickEvents(DATA_GLOBAL);
+
       InitMap(DATA_GLOBAL);
     })
     .catch((error) => {
@@ -202,7 +203,7 @@ function INIT() {
       .then((response) => {
         DATA_GLOBAL = response[0];
 
-        console.log(DATA_GLOBAL);
+        //console.log(DATA_GLOBAL);
 
         UpdateUI(DATA_GLOBAL);
       })
@@ -213,30 +214,22 @@ function INIT() {
 }
 
 function UpdateUI(DATA) {
-  const activeClass = "catActive";
-  const presion = DATA.signals.filter(
-    (signalPresion) => signalPresion.tipoSignal == 2
-  )[0];
-
-  $header_title.innerHTML = DATA.nombre;
+  $header_title.textContent = DATA.nombre;
   setHeaderEnlace(DATA);
   setFechaHeader(DATA);
 
-  if ($señalesCat.classList.contains(activeClass)) {
+  // Determinar qué tabla está activa
+  if ($señalesCat.classList.contains("catActive")) {
     createTableSeñales();
-  } else if ($calculoCat.classList.contains(activeClass)) {
-    createTableCalculo();
-    DiametroInternoDeLaTuberia.innerHTML =
-      funcionesTabla.DiametroInternoDeLaTuberia;
-    LecturaManometroDescarga.innerHTML =
-      funcionesTabla.LecturaManometroDescarga(presion.valor);
+  } else if ($calculoCat.classList.contains("catActive")) {
+    createTableCalculo(DATA);
   }
 
   setBombaImg();
   setAlertasIcons();
 }
 
-function ClickEvents() {
+function ClickEvents(DATA_GLOBAL) {
   $MapaButton.addEventListener("click", () => {
     if ($Map.classList.contains("mapActive")) {
       $Map.classList.remove("mapActive");
@@ -255,7 +248,7 @@ function ClickEvents() {
     }
   });
 
-  selectCatTabla();
+  selectCatTabla(DATA_GLOBAL);
 }
 
 function setHeaderEnlace(DATA) {
@@ -313,7 +306,7 @@ function FechaFormateada(TIEMPO) {
 function setBombaImg() {
   const SIGNALS = DATA_GLOBAL.signals;
 
-  console.log(SIGNALS);
+  //console.log(SIGNALS);
 
   SIGNALS.forEach((signal) => {
     switch (signal.tipoSignal) {
@@ -468,13 +461,13 @@ function createTableSeñales() {
   appendSignalsByCategory(señalesE, "Señales Eléctricas");
 }
 
-function createTableCalculo() {
+function createTableCalculo(DATA) {
   const $TBody = document.getElementById("señales-tbody");
-  $TBody.innerHTML = ""; // Limpiar el contenido de la otra tabla
+  $TBody.innerHTML = ""; // Limpiar el contenido anterior
 
-  // Filtrar y crear filas y campos
+  // Filtrar y crear filas y celdas según los datos
   datosTabla.forEach((dato) => {
-    // Filtra datos vacios
+    // Filtrar datos vacíos
     const hasEmptyData = dato.celdas.some((celda) => celda.trim() === "");
     if (hasEmptyData) return;
 
@@ -484,7 +477,7 @@ function createTableCalculo() {
     dato.celdas.forEach((celda, index) => {
       const $TD = document.createElement("td");
       $TD.textContent = celda;
-      if (index === 2 && dato.id) {
+      if (index === 1 && dato.id) {
         // Si es la tercera celda y hay un id especificado
         $TD.id = dato.id;
       }
@@ -495,6 +488,103 @@ function createTableCalculo() {
   });
 
   obtenerReferenciasTabla();
+  updateDatosTablaCalculo(DATA);
+}
+
+function updateDatosTablaCalculo(DATA) {
+  const presion = DATA.signals.filter((signal) => signal.tipoSignal == 2)[0];
+  const gasto = DATA.signals.filter((signal) => signal.tipoSignal == 3)[0];
+  const FACTOR_POTENCIA_PROM = DATA.signals.filter(
+    (signal) => signal.tipoSignal == 19
+  )[0];
+  const TENSION_PROMEDIO = DATA.signals.filter(
+    (signal) => signal.tipoSignal == 16
+  )[3];
+  const CORRIENTE_PROMEDIO = DATA.signals.filter(
+    (signal) => signal.tipoSignal == 17
+  )[3];
+  const NIVEL_DINAMICO = DATA.signals.filter(
+    (signal) => signal.tipoSignal == 1
+  )[0];
+  const NIVEL_ESTATICO = DATA.signals.filter(
+    (signal) => signal.tipoSignal == 1
+  )[1];
+
+  const _potenciaEntrada = funcionesTabla.PotenciaDeEntrada(
+    CORRIENTE_PROMEDIO.valor,
+    TENSION_PROMEDIO.valor,
+    FACTOR_POTENCIA_PROM.valor
+  );
+
+  const _lecturaManometro = funcionesTabla.LecturaManometroDescarga(
+    presion.valor
+  );
+  const _gasto = funcionesTabla.Gasto(_lecturaManometro);
+  const _presionDescarga = funcionesTabla.PresionDescarga(
+    funcionesTabla.NivelTuberiaDeDescarga,
+    _lecturaManometro
+  );
+
+  const _areaTuberiaDescarga = funcionesTabla.AreaTuberiaDescarga(
+    funcionesTabla.DiametroInternoDeLaTuberia
+  );
+
+  const _cargaVelocidad = funcionesTabla.CargaDeVelocidad(
+    _gasto,
+    _areaTuberiaDescarga
+  );
+  const _cargaDescarga = funcionesTabla.CargaALaDescarga(
+    _presionDescarga,
+    _cargaVelocidad,
+    funcionesTabla.PerdidasDeFriccionEnLaColumna
+  );
+
+  const _cargaTotal = funcionesTabla.CargaTotal(
+    NIVEL_DINAMICO.valor,
+    _cargaDescarga
+  );
+
+  const _potenciaSalida = funcionesTabla.PotenciaDeSalida(_gasto, _cargaTotal);
+
+  const _abatimiento = funcionesTabla.Abatimiento(
+    _cargaVelocidad,
+    funcionesTabla.PerdidasDeFriccionEnLaColumna
+  );
+
+  const _eficienciaElectro = funcionesTabla.EficienciaElectromecanica(
+    _potenciaSalida,
+    _potenciaEntrada
+  );
+
+  const _rendimientoHidra = funcionesTabla.RendimientoHidraulico(
+    _gasto,
+    _abatimiento
+  );
+
+  Presion_DeCampo.innerHTML = `${presion.valor} kg/cm²`;
+  Gasto_DeCampo.innerHTML = `${gasto.valor} l/s`;
+  DiametroInternoDeLaTuberia.innerHTML = `${funcionesTabla.DiametroInternoDeLaTuberia} m`;
+  FrecuenciaDeRotacion.innerHTML = `${funcionesTabla.FrecuenciaDeRotacion} rpm`;
+  Nivel_DeCampo.innerHTML = `${NIVEL_DINAMICO.valor} m`;
+  NivelEstatico.innerHTML = `${NIVEL_ESTATICO.valor} m`;
+  NivelTuberiaDeDescarga.innerHTML = `${funcionesTabla.NivelTuberiaDeDescarga} m`;
+  LecturaManometroDescarga.innerHTML = `${_lecturaManometro} m`;
+  PresionDescarga.innerHTML = `${_presionDescarga} m`;
+  AreaTuberiaDescarga.innerHTML = `${_areaTuberiaDescarga} m²`;
+  Gasto.innerHTML = `${_gasto} m³/s`;
+  CargaDeVelocidad.innerHTML = `${_cargaVelocidad} m`;
+  PerdidasDeFriccionEnLaColumna.innerHTML = `${funcionesTabla.PerdidasDeFriccionEnLaColumna} m`;
+  CargaALaDescarga.innerHTML = `${_cargaDescarga} m`;
+  CargaTotal.innerHTML = `${_cargaTotal} m`;
+  Corriente_DeCampo.innerHTML = `${CORRIENTE_PROMEDIO.valor} A`;
+  Tension_DeCampo.innerHTML = `${TENSION_PROMEDIO.valor} V`;
+  FactorPotencia_DeCampo.innerHTML = FACTOR_POTENCIA_PROM.valor;
+  PotenciaDeEntrada.innerHTML = `${_potenciaEntrada} kW`;
+  PotenciaDeSalida.innerHTML = `${_potenciaSalida} kW`;
+
+  EficienciaElectromecanica.innerHTML = `${_eficienciaElectro} %`;
+  Abatimiento.innerHTML = `${_abatimiento} m`;
+  RendimientoHidraulico.innerHTML = `${_rendimientoHidra} l/s/m`;
 }
 
 function setBombaEstado(SIGNAL) {
@@ -531,7 +621,7 @@ function setAlertasIcons() {
 
   $alertasIcons.innerHTML = "";
 
-  //Fconsole.log(SIGNALS);
+  //console.log(SIGNALS);
 
   SIGNALS.forEach((signal) => {
     switch (signal.tipoSignal) {
@@ -653,24 +743,19 @@ function createBombaCarrusel(SIGNAL) {
   $arranque__bombas.append(div);
 }
 
-//ahora, los datos que esten vacios no se deben de agregar
-function selectCatTabla() {
-  const $TBody = document.getElementById("señales-tbody");
-
+function selectCatTabla(DATA) {
   const activeClass = "catActive";
 
   $señalesCat.addEventListener("click", () => {
     document.querySelector(`.${activeClass}`)?.classList.remove(activeClass);
     $señalesCat.classList.add(activeClass);
-    $TBody.innerHTML = "";
     createTableSeñales();
   });
 
   $calculoCat.addEventListener("click", () => {
     document.querySelector(`.${activeClass}`)?.classList.remove(activeClass);
     $calculoCat.classList.add(activeClass);
-    $TBody.innerHTML = "";
-    createTableCalculo();
+    createTableCalculo(DATA);
     obtenerReferenciasTabla();
   });
 }
