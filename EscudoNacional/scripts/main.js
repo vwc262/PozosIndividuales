@@ -501,7 +501,7 @@ function createTableCalculo(DATA) {
   });
 
   obtenerReferenciasTabla();
-  updateDatosTablaCalculo(DATA);
+  //updateDatosTablaCalculo(DATA);
 }
 
 function updateDatosTablaCalculo(DATA) {
