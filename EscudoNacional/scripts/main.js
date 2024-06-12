@@ -141,7 +141,7 @@ function FechaFormateada(TIEMPO) {
 function setBombaImg() {
   const SIGNALS = DATA_GLOBAL.signals;
 
-  //console.log(SIGNALS);
+  console.log(SIGNALS);
 
   SIGNALS.forEach((signal) => {
     switch (signal.tipoSignal) {
@@ -157,26 +157,22 @@ function setSeñales() {
   const $TBody = document.getElementById("señales-tbody");
 
   let voltajeCounter = 0; // Contador para señales de voltaje
-  let corrienteCounter = 0; // Contador para señales de Corriente
+  let corrienteCounter = 0; // Contador para señales de corriente
+
+  const señalesH = [1, 2, 3, 4, 5, 6, 7, 8]; // Señales hidráulicas
+  const señalesE = [10, 16, 17, 18, 19]; // Señales eléctricas
+  const excludedTypes = [11, 12, 13, 14, 15]; // Tipos de señal que no se agregan
 
   $TBody.innerHTML = "";
 
-  const excludedTypes = [11, 12, 13, 14, 15]; // Tipos de señal que no se agregan
-
-  SIGNALS.forEach((signal) => {
-    if (excludedTypes.includes(signal.tipoSignal)) {
-      return;
-    }
-
+  // Función para crear filas de señales
+  const createSignalRow = (signal) => {
     const $TR = document.createElement("tr");
     const $TDName = document.createElement("td");
     const $TDValue = document.createElement("td");
 
     // Asignar clase al TR
-    const className = signal.nombre
-      .replace(/[0-9]/g, "")
-      .replace(/\s+/g, "")
-      .toLowerCase();
+    const className = signal.nombre.split(" ")[0].toLowerCase();
     $TR.classList.add(className);
 
     // Nombres y valores
@@ -215,28 +211,23 @@ function setSeñales() {
         break;
 
       case 10:
-        $TDName.textContent = "Voltaje bateria";
+        $TDName.textContent = "Voltaje batería";
         $TDValue.textContent = `${signal.valor} V`;
         break;
 
       case 16:
-        $TDName.textContent = `Voltaje ${String.fromCharCode(
-          65 + voltajeCounter
-        )}`;
+        $TDName.textContent = signal.nombre;
         voltajeCounter++;
         $TDValue.textContent = `${signal.valor} V`;
         break;
 
       case 17:
-        $TDName.textContent = `Corriente ${String.fromCharCode(
-          65 + corrienteCounter
-        )}`;
+        $TDName.textContent = signal.nombre;
         corrienteCounter++;
         $TDValue.textContent = `${signal.valor} A`;
         break;
 
       case 18:
-        // $TDName.textContent = signal.nombre.replace(/[0-9]/g, "");
         $TDName.textContent = "Potencia total";
         $TDValue.textContent = `${signal.valor} kW`;
         break;
@@ -271,8 +262,38 @@ function setSeñales() {
 
     $TR.appendChild($TDName);
     $TR.appendChild($TDValue);
+    return $TR;
+  };
+
+  // Agregar un caption y señales por categoría
+  const appendSignalsByCategory = (category, captionText) => {
+    const $TR = document.createElement("tr");
+    const $TD = document.createElement("td");
+    $TD.textContent = captionText;
+
+    $TD.setAttribute("colspan", "2");
+
+    $TR.appendChild($TD);
+
+    $TR.classList.add("categoriaNombre");
     $TBody.appendChild($TR);
-  });
+
+    SIGNALS.forEach((signal) => {
+      if (
+        category.includes(signal.tipoSignal) &&
+        !excludedTypes.includes(signal.tipoSignal)
+      ) {
+        const $TR = createSignalRow(signal);
+        $TBody.appendChild($TR);
+      }
+    });
+  };
+
+  // Agregar señales hidráulicas
+  appendSignalsByCategory(señalesH, "Señales Hidráulicas");
+
+  // Agregar señales eléctricas
+  appendSignalsByCategory(señalesE, "Señales Eléctricas");
 }
 
 function setBombaEstado(SIGNAL) {

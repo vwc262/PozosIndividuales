@@ -211,6 +211,17 @@ main {
   padding: 5px;
 }
 
+.categoriaNombre {
+  border: 1px solid #dededf;
+  background-color: #eceff1;
+  color: #000000;
+  padding: 5px;
+}
+
+.nivel {
+  background-color: #a9a86a;
+}
+
 .presion {
   background-color: #a49a9a;
 }
@@ -221,11 +232,12 @@ main {
   background-color: #c0c8db;
 }
 .bomba {
-  background-color: #99caca;
+  background-color: #7ca6cb;
 }
-.perillabomba {
+.perilla {
   background-color: #e594cf;
 }
+
 .voltaje {
   background-color: #8bbfa5;
 }
@@ -247,13 +259,13 @@ main {
 .voltajerango {
   background-color: #e38686;
 }
-.corrienterango {
+.corriente {
   background-color: #b99158;
 }
-.potenciatotal {
+.potencia {
   background-color: #8a95d5;
 }
-.factorpotencia {
+.factor {
   background-color: #6ad091;
 }
 
