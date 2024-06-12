@@ -193,7 +193,7 @@ function INIT() {
     .then((response) => {
       DATA_GLOBAL = response[0];
 
-      //console.log(DATA_GLOBAL);
+      console.log(DATA_GLOBAL);
 
       UpdateUI(DATA_GLOBAL);
       ClickEvents(DATA_GLOBAL);
@@ -354,7 +354,7 @@ function createTableSeñales() {
         $TDName.textContent = signal.nombre;
 
         $TDValue.textContent = `${signal.valor} m`;
-        break
+        break;
       case 7:
         $TDName.textContent = "Estado bomba";
         switch (signal.valor) {
@@ -468,10 +468,10 @@ function createTableSeñales() {
   };
 
   // Agregar señales hidráulicas
-  appendSignalsByCategory(señalesH, "Señales Hidráulicas");
+  appendSignalsByCategory(señalesH, "Variables Hidráulicas");
 
   // Agregar señales eléctricas
-  appendSignalsByCategory(señalesE, "Señales Eléctricas");
+  appendSignalsByCategory(señalesE, "Variables Eléctricas");
 }
 
 function createTableCalculo(DATA) {
@@ -512,16 +512,16 @@ function updateDatosTablaCalculo(DATA) {
   )[0];
   const TENSION_PROMEDIO = DATA.signals.filter(
     (signal) => signal.tipoSignal == 16
-  )[3];
+  )[3] ?? { valor: Math.random() };
   const CORRIENTE_PROMEDIO = DATA.signals.filter(
     (signal) => signal.tipoSignal == 17
-  )[3];
+  )[3] ?? { valor: Math.random() };
   const NIVEL_DINAMICO = DATA.signals.filter(
     (signal) => signal.tipoSignal == 1
-  )[0];
+  )[0] ?? { valor: Math.random() };
   const NIVEL_ESTATICO = DATA.signals.filter(
     (signal) => signal.tipoSignal == 1
-  )[1];
+  )[1] ?? { valor: Math.random() };
 
   const _potenciaEntrada = funcionesTabla.PotenciaDeEntrada(
     CORRIENTE_PROMEDIO.valor,
