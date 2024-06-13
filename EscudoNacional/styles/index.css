@@ -295,6 +295,14 @@ main {
   background-color: #6ad091;
 }
 
+::-webkit-input-placeholder {
+  text-align: center;
+}
+
+::placeholder {
+  text-align: center;
+}
+
 @media only screen and (max-width: 600px) {
   .map__Container {
     width: 100%;

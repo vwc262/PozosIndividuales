@@ -60,92 +60,102 @@ if (PROYECTO != EnumProyecto.Escudo) {
 const datosTabla = [
   {
     clase: "de-campo",
-    celdas: ["Presión (kg/cm2)", "2.15"],
+    celdas: ["Presión", "2.15"],
     id: "Presion_DeCampo",
   },
   {
     clase: "de-campo",
-    celdas: ["Gasto (l/s)", "54.4"],
+    celdas: ["Gasto", "54.4"],
     id: "Gasto_DeCampo",
   },
   { clase: "", celdas: ["", ""] },
 
   {
     clase: "de-campo",
-    celdas: ["Nivel dinámico (m)", "60"],
+    type: "caja",
+    celdas: ["Nivel dinámico", "60"],
     id: "Nivel_DeCampo",
   },
   {
     clase: "de-campo",
-    celdas: ["Nivel estático(m)", "59"],
+    type: "caja",
+    celdas: ["Nivel estático", "59"],
     id: "NivelEstatico",
   },
 
   {
     clase: "de-campo",
-    celdas: ["Corriente promedio (A)", "148"],
+    celdas: ["Corriente promedio", "148"],
     id: "Corriente_DeCampo",
   },
   {
     clase: "de-campo",
-    celdas: ["Tensión promedio (V)", "455"],
+    celdas: ["Tensión promedio", "455"],
     id: "Tension_DeCampo",
   },
   {
+    clase: "de-campo",
+    celdas: ["Factor potencia promedio", "0"],
+    id: "FactorPotencia_DeCampo",
+  },
+  {
     clase: "calculos-buenos",
-    celdas: ["Eficiencia electromecánica (%)", "38%"],
+    celdas: ["Eficiencia electromecánica", "38%"],
     id: "EficienciaElectromecanica",
   },
   {
     clase: "calculos-buenos",
-    celdas: ["Rendimiento hidráulico (l/s/m)", "54.40"],
+    celdas: ["Rendimiento hidráulico", "54.40"],
     id: "RendimientoHidraulico",
   },
   {
     clase: "constantes",
-    celdas: ["Frecuencia de rotación (rpm)", "1500"],
+    type: "caja",
+    celdas: ["Frecuencia de rotación", "1500"],
     id: "FrecuenciaDeRotacion",
   },
   {
     clase: "constantes",
-    celdas: ["Diámetro interno de la tubería(m)", "0.15"],
+    type: "caja",
+    celdas: ["Diámetro interno de la tubería", "0.15"],
     id: "DiametroInternoDeLaTuberia",
   },
 
   {
     clase: "constantes",
-    celdas: ["Nivel tubería de descarga (m)", "0.75"],
+    celdas: ["Nivel tubería de descarga", "0.75"],
     id: "NivelTuberiaDeDescarga",
   },
   {
     clase: "calculos",
-    celdas: ["Lectura manómetro de descarga (m)", "21.50"],
+    celdas: ["Lectura manómetro de descarga", "21.50"],
     id: "LecturaManometroDescarga",
   },
   {
     clase: "calculos",
-    celdas: ["Presión descarga (m)", "22.25"],
+    celdas: ["Presión descarga", "22.25"],
     id: "PresionDescarga",
   },
   {
     clase: "calculos",
-    celdas: ["Area tubería descarga (m2)", "0.02"],
+    celdas: ["Area tubería descarga", "0.02"],
     id: "AreaTuberiaDescarga",
   },
-  { clase: "calculos", celdas: ["Gasto (m3/s)", "0.054"], id: "Gasto" },
+  { clase: "calculos", celdas: ["Gasto", "0.054"], id: "Gasto" },
   {
     clase: "calculos",
-    celdas: ["Carga de velocidad (m)", "0.48"],
+    celdas: ["Carga de velocidad", "0.48"],
     id: "CargaDeVelocidad",
   },
   {
     clase: "constantes",
-    celdas: ["Pérdidas de fricción en la columna(m)", "1.00"],
+    type: "caja",
+    celdas: ["Pérdidas de fricción en la columna", "1.00"],
     id: "PerdidasDeFriccionEnLaColumna",
   },
   {
     clase: "calculos",
-    celdas: ["Carga a la descarga (m)", "23.73"],
+    celdas: ["Carga a la descarga", "23.73"],
     id: "CargaALaDescarga",
   },
   {
@@ -153,13 +163,13 @@ const datosTabla = [
     celdas: ["Carga total", "83.73"],
     id: "CargaTotal",
   },
-  { clase: "calculos", celdas: ["Corriente A", ""] },
-  { clase: "calculos", celdas: ["Corriente B", ""] },
-  { clase: "calculos", celdas: ["Corriente C", ""] },
+  { clase: "calculos", celdas: ["Corriente A", ""], id: "corrientea" },
+  { clase: "calculos", celdas: ["Corriente B", ""], id: "corrienteb" },
+  { clase: "calculos", celdas: ["Corriente C", ""], id: "corrientec" },
 
-  { clase: "calculos", celdas: ["Tensión AB", ""] },
-  { clase: "calculos", celdas: ["Tensión AC", ""] },
-  { clase: "calculos", celdas: ["tensión BC", ""] },
+  { clase: "calculos", celdas: ["Tensión AB", ""], id: "tensionab" },
+  { clase: "calculos", celdas: ["Tensión AC", ""], id: "tensionac" },
+  { clase: "calculos", celdas: ["tensión BC", ""], id: "tensionbc" },
 
   { clase: "calculos", celdas: ["Factor de potencia A", ""] },
   { clase: "calculos", celdas: ["Factor de potencia B", ""] },
@@ -167,19 +177,19 @@ const datosTabla = [
 
   {
     clase: "calculos",
-    celdas: ["Potencia de entrada (kW)", "116.64"],
+    celdas: ["Potencia de entrada", "116.64"],
     id: "PotenciaDeEntrada",
   },
   {
     clase: "calculos",
-    celdas: ["Potencia de salida (kW)", "44.69"],
+    celdas: ["Potencia de salida", "44.69"],
     id: "PotenciaDeSalida",
   },
 
   { clase: "", celdas: ["", ""] },
   {
     clase: "calculos",
-    celdas: ["Abatimiento (m)", "1.00"],
+    celdas: ["Abatimiento", "1.00"],
     id: "Abatimiento",
   },
 ];
@@ -225,16 +235,16 @@ function UpdateUI(DATA) {
   $header_title.textContent = DATA.nombre;
   setHeaderEnlace(DATA);
   setFechaHeader(DATA);
+  setBombaImg();
+  setAlertasIcons();
 
   // Determinar qué tabla está activa
   if ($señalesCat.classList.contains("catActive")) {
     createTableSeñales();
   } else if ($calculoCat.classList.contains("catActive")) {
-    createTableCalculo(DATA);
+    // createTableCalculo(DATA);
+    updateDatosCampo(DATA);
   }
-
-  setBombaImg();
-  setAlertasIcons();
 }
 
 function ClickEvents(DATA_GLOBAL) {
@@ -322,6 +332,23 @@ function setBombaImg() {
         setBombaEstado(signal);
         break;
     }
+  });
+}
+
+function selectCatTabla(DATA) {
+  const activeClass = "catActive";
+
+  $señalesCat.addEventListener("click", () => {
+    document.querySelector(`.${activeClass}`)?.classList.remove(activeClass);
+    $señalesCat.classList.add(activeClass);
+    createTableSeñales();
+  });
+
+  $calculoCat.addEventListener("click", () => {
+    document.querySelector(`.${activeClass}`)?.classList.remove(activeClass);
+    $calculoCat.classList.add(activeClass);
+    createTableCalculo(DATA);
+    obtenerReferenciasTabla();
   });
 }
 
@@ -478,9 +505,8 @@ function createTableSeñales() {
 
 function createTableCalculo(DATA) {
   const $TBody = document.getElementById("señales-tbody");
-  $TBody.innerHTML = ""; // Limpiar el contenido anterior
-
-  // Filtrar y crear filas y celdas según los datos
+  $TBody.innerHTML = "";
+  // Filtrar y crear filas y celdas
   datosTabla.forEach((dato) => {
     // Filtrar datos vacíos
     const hasEmptyData = dato.celdas.some((celda) => celda.trim() === "");
@@ -491,9 +517,30 @@ function createTableCalculo(DATA) {
 
     dato.celdas.forEach((celda, index) => {
       const $TD = document.createElement("td");
-      $TD.textContent = celda;
+      if (index === 1 && dato.type === "caja") {
+        // Se crean los input text y submit  si tienen la clase 'caja'
+        const $inputTXT = document.createElement("input");
+        const $inputSUBMIT = document.createElement("input");
+        $inputSUBMIT.type = "submit";
+        $inputSUBMIT.value = "Enviar";
+        $inputTXT.type = "text";
+        $inputTXT.placeholder = celda;
+        $TD.append($inputTXT, $inputSUBMIT);
+
+        // ClickEvent de los submit
+        $inputSUBMIT.addEventListener("click", (e) => {
+          console.log("click en el submit");
+          e.preventDefault();
+          const newValue = $inputTXT.value;
+          if (newValue.trim() !== "") {
+            celda = newValue; // Actualizar el valor en los datos
+            updateDatosDependientes(DATA);
+          }
+        });
+      } else {
+        $TD.textContent = celda;
+      }
       if (index === 1 && dato.id) {
-        // Si es la tercera celda y hay un id especificado
         $TD.id = dato.id;
       }
       $TR.appendChild($TD);
@@ -503,31 +550,139 @@ function createTableCalculo(DATA) {
   });
 
   obtenerReferenciasTabla();
-  //updateDatosTablaCalculo(DATA);
+  updateDatosCampo(DATA);
 }
 
-function updateDatosTablaCalculo(DATA) {
+function obtenerReferenciasTabla() {
+  Presion_DeCampo = document.querySelector("#Presion_DeCampo");
+  Gasto_DeCampo = document.querySelector("#Gasto_DeCampo");
+  DiametroInternoDeLaTuberia = document.querySelector(
+    "#DiametroInternoDeLaTuberia"
+  );
+  FrecuenciaDeRotacion = document.querySelector("#FrecuenciaDeRotacion");
+  Nivel_DeCampo = document.querySelector("#Nivel_DeCampo");
+  NivelEstatico = document.querySelector("#NivelEstatico");
+  NivelTuberiaDeDescarga = document.querySelector("#NivelTuberiaDeDescarga");
+  LecturaManometroDescarga = document.querySelector(
+    "#LecturaManometroDescarga"
+  );
+  PresionDescarga = document.querySelector("#PresionDescarga");
+  AreaTuberiaDescarga = document.querySelector("#AreaTuberiaDescarga");
+  Gasto = document.querySelector("#Gasto");
+  CargaDeVelocidad = document.querySelector("#CargaDeVelocidad");
+  PerdidasDeFriccionEnLaColumna = document.querySelector(
+    "#PerdidasDeFriccionEnLaColumna"
+  );
+  CargaALaDescarga = document.querySelector("#CargaALaDescarga");
+  CargaTotal = document.querySelector("#CargaTotal");
+  Corriente_DeCampo = document.querySelector("#Corriente_DeCampo");
+  Tension_DeCampo = document.querySelector("#Tension_DeCampo");
+  FactorPotencia_DeCampo = document.querySelector("#FactorPotencia_DeCampo");
+  PotenciaDeEntrada = document.querySelector("#PotenciaDeEntrada");
+  PotenciaDeSalida = document.querySelector("#PotenciaDeSalida");
+  EficienciaElectromecanica = document.querySelector(
+    "#EficienciaElectromecanica"
+  );
+  Abatimiento = document.querySelector("#Abatimiento");
+  RendimientoHidraulico = document.querySelector("#RendimientoHidraulico");
+}
+
+function updateDatosCampo(DATA) {
   const presion = DATA.signals.filter((signal) => signal.tipoSignal == 2)[0];
   const gasto = DATA.signals.filter((signal) => signal.tipoSignal == 3)[0];
-  const FACTOR_POTENCIA_PROM = DATA.signals.filter(
+  let FACTOR_POTENCIA_PROM = DATA.signals.filter(
     (signal) => signal.tipoSignal == 19
   )[0];
+
   const TENSION_PROMEDIO = DATA.signals.filter(
     (signal) => signal.tipoSignal == 16
-  )[3] ?? { valor: Math.random() };
+  )[3] ?? { valor: Math.random().toFixed(2) };
   const CORRIENTE_PROMEDIO = DATA.signals.filter(
     (signal) => signal.tipoSignal == 17
-  )[3] ?? { valor: Math.random() };
-  const NIVEL_DINAMICO = DATA.signals.filter(
-    (signal) => signal.tipoSignal == 1
-  )[0] ?? { valor: Math.random() };
-  const NIVEL_ESTATICO = DATA.signals.filter(
-    (signal) => signal.tipoSignal == 1
-  )[1] ?? { valor: Math.random() };
+  )[3] ?? { valor: Math.random().toFixed(2) };
+
+  updateElement("Presion_DeCampo", `${presion.valor} kg/cm²`);
+  updateElement("Gasto_DeCampo", `${gasto.valor} l/s`);
+  updateElement("FactorPotencia_DeCampo", FACTOR_POTENCIA_PROM.valor);
+
+  //updateElement("Corriente_DeCampo", `${CORRIENTE_PROMEDIO.valor} A`);
+  //updateElement("Tension_DeCampo", `${TENSION_PROMEDIO.valor} V`);
+}
+
+function updateElement(id, value) {
+  const element = document.getElementById(id);
+  if (element) {
+    if (element.classList.contains("caja")) {
+      const input = element.querySelector("input[type='text']");
+      if (input) {
+        input.placeholder = value;
+      }
+    } else {
+      element.innerHTML = value;
+    }
+  }
+}
+
+function updateDatosDependientes(DATA) {
+  let presion = DATA.signals.filter((signal) => signal.tipoSignal == 2)[0];
+  let TENSION_PROMEDIO = 455;
+  let CORRIENTE_PROMEDIO = 148;
+  let NIVEL_DINAMICO = 60;
+  let NIVEL_ESTATICO = 49;
+
+  let FACTOR_POTENCIA_PROM = DATA.signals.filter(
+    (signal) => signal.tipoSignal == 19
+  )[0];
+  // let TENSION_PROMEDIO = DATA.signals.filter(
+  //   (signal) => signal.tipoSignal == 16
+  // )[3];
+  // let CORRIENTE_PROMEDIO = DATA.signals.filter(
+  //   (signal) => signal.tipoSignal == 17
+  // )[3];
+  // const NIVEL_DINAMICO = DATA.signals.filter(
+  //   (signal) => signal.tipoSignal == 1
+  // )[0];
+  // const NIVEL_ESTATICO = DATA.signals.filter(
+  //   (signal) => signal.tipoSignal == 1
+  // )[1];
+
+  const nivelDinamicoInput = document
+    .getElementById("Nivel_DeCampo")
+    ?.querySelector("input[type='text']");
+  const nivelEstaticoInput = document
+    .getElementById("NivelEstatico")
+    ?.querySelector("input[type='text']");
+  const diametroInput = document
+    .getElementById("DiametroInternoDeLaTuberia")
+    ?.querySelector("input[type='text']");
+  const frecuenciaInput = document
+    .getElementById("FrecuenciaDeRotacion")
+    ?.querySelector("input[type='text']");
+  const perdidasFriccionInput = document
+    .getElementById("PerdidasDeFriccionEnLaColumna")
+    ?.querySelector("input[type='text']");
+
+  if (diametroInput && diametroInput.value.trim() !== "") {
+    funcionesTabla.DiametroInternoDeLaTuberia = parseFloat(diametroInput.value);
+  }
+  if (frecuenciaInput && frecuenciaInput.value.trim() !== "") {
+    funcionesTabla.FrecuenciaDeRotacion = parseFloat(frecuenciaInput.value);
+  }
+  if (nivelDinamicoInput && nivelDinamicoInput.value.trim() !== "") {
+    NIVEL_DINAMICO = parseFloat(nivelDinamicoInput.value);
+  }
+  if (nivelEstaticoInput && nivelEstaticoInput.value.trim() !== "") {
+    NIVEL_ESTATICO = parseFloat(nivelEstaticoInput.value);
+  }
+  if (perdidasFriccionInput && perdidasFriccionInput.value.trim() !== "") {
+    funcionesTabla.PerdidasDeFriccionEnLaColumna = parseFloat(
+      perdidasFriccionInput.value
+    );
+  }
 
   const _potenciaEntrada = funcionesTabla.PotenciaDeEntrada(
-    CORRIENTE_PROMEDIO.valor,
-    TENSION_PROMEDIO.valor,
+    CORRIENTE_PROMEDIO,
+    TENSION_PROMEDIO,
     FACTOR_POTENCIA_PROM.valor
   );
 
@@ -555,15 +710,15 @@ function updateDatosTablaCalculo(DATA) {
   );
 
   const _cargaTotal = funcionesTabla.CargaTotal(
-    NIVEL_DINAMICO.valor,
-    _cargaDescarga
+    NIVEL_DINAMICO,
+    parseFloat(_cargaDescarga)
   );
 
   const _potenciaSalida = funcionesTabla.PotenciaDeSalida(_gasto, _cargaTotal);
 
   const _abatimiento = funcionesTabla.Abatimiento(
-    _cargaVelocidad,
-    funcionesTabla.PerdidasDeFriccionEnLaColumna
+    NIVEL_DINAMICO,
+    NIVEL_ESTATICO
   );
 
   const _eficienciaElectro = funcionesTabla.EficienciaElectromecanica(
@@ -576,30 +731,23 @@ function updateDatosTablaCalculo(DATA) {
     _abatimiento
   );
 
-  Presion_DeCampo.innerHTML = `${presion.valor} kg/cm²`;
-  Gasto_DeCampo.innerHTML = `${gasto.valor} l/s`;
-  DiametroInternoDeLaTuberia.innerHTML = `${funcionesTabla.DiametroInternoDeLaTuberia} m`;
-  FrecuenciaDeRotacion.innerHTML = `${funcionesTabla.FrecuenciaDeRotacion} rpm`;
-  Nivel_DeCampo.innerHTML = `${NIVEL_DINAMICO.valor} m`;
-  NivelEstatico.innerHTML = `${NIVEL_ESTATICO.valor} m`;
-  NivelTuberiaDeDescarga.innerHTML = `${funcionesTabla.NivelTuberiaDeDescarga} m`;
-  LecturaManometroDescarga.innerHTML = `${_lecturaManometro} m`;
-  PresionDescarga.innerHTML = `${_presionDescarga} m`;
-  AreaTuberiaDescarga.innerHTML = `${_areaTuberiaDescarga} m²`;
-  Gasto.innerHTML = `${_gasto} m³/s`;
-  CargaDeVelocidad.innerHTML = `${_cargaVelocidad} m`;
-  PerdidasDeFriccionEnLaColumna.innerHTML = `${funcionesTabla.PerdidasDeFriccionEnLaColumna} m`;
-  CargaALaDescarga.innerHTML = `${_cargaDescarga} m`;
-  CargaTotal.innerHTML = `${_cargaTotal} m`;
-  Corriente_DeCampo.innerHTML = `${CORRIENTE_PROMEDIO.valor} A`;
-  Tension_DeCampo.innerHTML = `${TENSION_PROMEDIO.valor} V`;
-  FactorPotencia_DeCampo.innerHTML = FACTOR_POTENCIA_PROM.valor;
-  PotenciaDeEntrada.innerHTML = `${_potenciaEntrada} kW`;
-  PotenciaDeSalida.innerHTML = `${_potenciaSalida} kW`;
-
-  EficienciaElectromecanica.innerHTML = `${_eficienciaElectro} %`;
-  Abatimiento.innerHTML = `${_abatimiento} m`;
-  RendimientoHidraulico.innerHTML = `${_rendimientoHidra} l/s/m`;
+  // Actualizar los valores recalculados
+  updateElement(
+    "NivelTuberiaDeDescarga",
+    `${funcionesTabla.NivelTuberiaDeDescarga} m`
+  );
+  updateElement("LecturaManometroDescarga", `${_lecturaManometro} m`);
+  updateElement("PresionDescarga", `${_presionDescarga} m`);
+  updateElement("AreaTuberiaDescarga", `${_areaTuberiaDescarga} m²`);
+  updateElement("Gasto", `${_gasto} m³/s`);
+  updateElement("CargaDeVelocidad", `${_cargaVelocidad} m`);
+  updateElement("CargaALaDescarga", `${_cargaDescarga} m`);
+  updateElement("CargaTotal", `${_cargaTotal} m`);
+  updateElement("PotenciaDeEntrada", `${_potenciaEntrada} kW`);
+  updateElement("PotenciaDeSalida", `${_potenciaSalida} kW`);
+  updateElement("EficienciaElectromecanica", `${_eficienciaElectro} %`);
+  updateElement("Abatimiento", `${_abatimiento} m`);
+  updateElement("RendimientoHidraulico", `${_rendimientoHidra} l/s/m`);
 }
 
 function setBombaEstado(SIGNAL) {
@@ -636,7 +784,7 @@ function setAlertasIcons() {
 
   $alertasIcons.innerHTML = "";
 
-  //console.log(SIGNALS);
+  console.log(SIGNALS);
 
   SIGNALS.forEach((signal) => {
     switch (signal.tipoSignal) {
@@ -758,54 +906,4 @@ function createBombaCarrusel(SIGNAL) {
   $arranque__bombas.append(div);
 }
 
-function selectCatTabla(DATA) {
-  const activeClass = "catActive";
-
-  $señalesCat.addEventListener("click", () => {
-    document.querySelector(`.${activeClass}`)?.classList.remove(activeClass);
-    $señalesCat.classList.add(activeClass);
-    createTableSeñales();
-  });
-
-  $calculoCat.addEventListener("click", () => {
-    document.querySelector(`.${activeClass}`)?.classList.remove(activeClass);
-    $calculoCat.classList.add(activeClass);
-    createTableCalculo(DATA);
-    obtenerReferenciasTabla();
-  });
-}
-
-function obtenerReferenciasTabla() {
-  Presion_DeCampo = document.querySelector("#Presion_DeCampo");
-  Gasto_DeCampo = document.querySelector("#Gasto_DeCampo");
-  DiametroInternoDeLaTuberia = document.querySelector(
-    "#DiametroInternoDeLaTuberia"
-  );
-  FrecuenciaDeRotacion = document.querySelector("#FrecuenciaDeRotacion");
-  Nivel_DeCampo = document.querySelector("#Nivel_DeCampo");
-  NivelEstatico = document.querySelector("#NivelEstatico");
-  NivelTuberiaDeDescarga = document.querySelector("#NivelTuberiaDeDescarga");
-  LecturaManometroDescarga = document.querySelector(
-    "#LecturaManometroDescarga"
-  );
-  PresionDescarga = document.querySelector("#PresionDescarga");
-  AreaTuberiaDescarga = document.querySelector("#AreaTuberiaDescarga");
-  Gasto = document.querySelector("#Gasto");
-  CargaDeVelocidad = document.querySelector("#CargaDeVelocidad");
-  PerdidasDeFriccionEnLaColumna = document.querySelector(
-    "#PerdidasDeFriccionEnLaColumna"
-  );
-  CargaALaDescarga = document.querySelector("#CargaALaDescarga");
-  CargaTotal = document.querySelector("#CargaTotal");
-  Corriente_DeCampo = document.querySelector("#Corriente_DeCampo");
-  Tension_DeCampo = document.querySelector("#Tension_DeCampo");
-  FactorPotencia_DeCampo = document.querySelector("#FactorPotencia_DeCampo");
-  PotenciaDeEntrada = document.querySelector("#PotenciaDeEntrada");
-  PotenciaDeSalida = document.querySelector("#PotenciaDeSalida");
-  EficienciaElectromecanica = document.querySelector(
-    "#EficienciaElectromecanica"
-  );
-  Abatimiento = document.querySelector("#Abatimiento");
-  RendimientoHidraulico = document.querySelector("#RendimientoHidraulico");
-}
 export { INIT };

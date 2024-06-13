@@ -62,10 +62,8 @@ var funcionesTabla = {
       ? parseFloat(PotenciaDeSalida / PotenciaDeEntrada).toFixed(2)
       : 0;
   },
-  Abatimiento: function (CargaDeVelocidad, PerdidasDeFriccionEnLaColumna) {
-    return parseFloat(CargaDeVelocidad - PerdidasDeFriccionEnLaColumna).toFixed(
-      2
-    );
+  Abatimiento: function (NivelDimnamico, NivelEstatico) {
+    return parseFloat(NivelDimnamico - NivelEstatico).toFixed(2);
   },
   RendimientoHidraulico: function (Gasto, Abatimiento) {
     return Abatimiento != 0
