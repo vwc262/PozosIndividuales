@@ -303,6 +303,10 @@ main {
   text-align: center;
 }
 
+input {
+  text-align: center;
+}
+
 @media only screen and (max-width: 600px) {
   .map__Container {
     width: 100%;
