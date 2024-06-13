@@ -532,14 +532,13 @@ function createTableCalculo(DATA) {
         // ClickEvent de los submit
         $inputSUBMIT.addEventListener("click", (e) => {
           e.preventDefault();
-          console.log(DATA)
+          console.log(DATA);
           const newValue = $inputTXT.value;
           if (newValue.trim() !== "") {
             celda = newValue; // Actualizar el valor en los datos
             updateDatosDependientes(DATA_GLOBAL);
           }
         });
-
       } else {
         $TD.textContent = celda;
       }
@@ -731,8 +730,8 @@ function updateDatosDependientes(DATA) {
     _areaTuberiaDescarga
   );
   const _cargaDescarga = funcionesTabla.CargaALaDescarga(
-    _presionDescarga,
-    _cargaVelocidad,
+    parseFloat(_presionDescarga),
+    parseFloat(_cargaVelocidad),
     funcionesTabla.PerdidasDeFriccionEnLaColumna
   );
 
