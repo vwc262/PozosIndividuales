@@ -706,13 +706,13 @@ function updateDatosDependientes(DATA) {
   }
 
   const _potenciaEntrada = funcionesTabla.PotenciaDeEntrada(
-    CORRIENTE_PROMEDIO,
-    TENSION_PROMEDIO,
-    FACTOR_POTENCIA_PROM.valor / 100
+    parseFloat(CORRIENTE_PROMEDIO),
+    parseFloat(TENSION_PROMEDIO),
+    parseFloat(FACTOR_POTENCIA_PROM.valor / 100)
   );
 
   const _lecturaManometro = funcionesTabla.LecturaManometroDescarga(
-    presion.valor
+    parseFloat(presion.valor)
   );
 
   const _gasto = funcionesTabla.Gasto(gasto.valor);
@@ -726,8 +726,8 @@ function updateDatosDependientes(DATA) {
   );
 
   const _cargaVelocidad = funcionesTabla.CargaDeVelocidad(
-    _gasto,
-    _areaTuberiaDescarga
+    parseFloat(_gasto),
+    parseFloat(_areaTuberiaDescarga)
   );
   const _cargaDescarga = funcionesTabla.CargaALaDescarga(
     parseFloat(_presionDescarga),
@@ -736,28 +736,28 @@ function updateDatosDependientes(DATA) {
   );
 
   const _cargaTotal = funcionesTabla.CargaTotal(
-    NIVEL_DINAMICO,
+    parseFloat(NIVEL_DINAMICO),
     parseFloat(_cargaDescarga)
   );
 
   const _potenciaSalida = funcionesTabla.PotenciaDeSalida(
-    gasto.valor / 1000,
-    _cargaTotal
+    parseFloat(gasto.valor / 1000),
+    parseFloat(_cargaTotal)
   );
 
   const _abatimiento = funcionesTabla.Abatimiento(
-    NIVEL_DINAMICO,
-    NIVEL_ESTATICO
+    parseFloat(NIVEL_DINAMICO),
+    parseFloat(NIVEL_ESTATICO)
   );
 
   const _eficienciaElectro = funcionesTabla.EficienciaElectromecanica(
-    _potenciaSalida,
-    _potenciaEntrada
+    parseFloat(_potenciaSalida),
+    parseFloat(_potenciaEntrada)
   );
 
   const _rendimientoHidra = funcionesTabla.RendimientoHidraulico(
-    gasto.valor / 1000,
-    _abatimiento
+    parseFloat(gasto.valor / 1000),
+    parseFloat(_abatimiento)
   );
 
   // Actualizar los valores recalculados
