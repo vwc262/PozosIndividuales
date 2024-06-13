@@ -59,7 +59,7 @@ var funcionesTabla = {
   },
   EficienciaElectromecanica: function (PotenciaDeSalida, PotenciaDeEntrada) {
     return PotenciaDeEntrada != 0
-      ? parseFloat(PotenciaDeSalida / PotenciaDeEntrada).toFixed(2)
+      ? parseFloat((PotenciaDeSalida / PotenciaDeEntrada)*100).toFixed(2)
       : 0;
   },
   Abatimiento: function (NivelDimnamico, NivelEstatico) {

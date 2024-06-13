@@ -244,6 +244,7 @@ function UpdateUI(DATA) {
   } else if ($calculoCat.classList.contains("catActive")) {
     // createTableCalculo(DATA);
     updateDatosCampo(DATA);
+    updateDatosDependientes(DATA);
   }
 }
 
@@ -348,6 +349,7 @@ function selectCatTabla(DATA) {
     document.querySelector(`.${activeClass}`)?.classList.remove(activeClass);
     $calculoCat.classList.add(activeClass);
     createTableCalculo(DATA);
+    updateDatosDependientes(DATA);
     obtenerReferenciasTabla();
   });
 }
@@ -529,14 +531,15 @@ function createTableCalculo(DATA) {
 
         // ClickEvent de los submit
         $inputSUBMIT.addEventListener("click", (e) => {
-          console.log("click en el submit");
           e.preventDefault();
+          console.log(DATA)
           const newValue = $inputTXT.value;
           if (newValue.trim() !== "") {
             celda = newValue; // Actualizar el valor en los datos
-            updateDatosDependientes(DATA);
+            updateDatosDependientes(DATA_GLOBAL);
           }
         });
+
       } else {
         $TD.textContent = celda;
       }
@@ -603,7 +606,7 @@ function updateDatosCampo(DATA) {
 
   updateElement("Presion_DeCampo", `${presion.valor} kg/cm²`);
   updateElement("Gasto_DeCampo", `${gasto.valor} l/s`);
-  updateElement("FactorPotencia_DeCampo", FACTOR_POTENCIA_PROM.valor);
+  updateElement("FactorPotencia_DeCampo", `${FACTOR_POTENCIA_PROM.valor} %`);
 
   //updateElement("Corriente_DeCampo", `${CORRIENTE_PROMEDIO.valor} A`);
   //updateElement("Tension_DeCampo", `${TENSION_PROMEDIO.valor} V`);
@@ -625,6 +628,8 @@ function updateElement(id, value) {
 
 function updateDatosDependientes(DATA) {
   let presion = DATA.signals.filter((signal) => signal.tipoSignal == 2)[0];
+  const gasto = DATA.signals.filter((signal) => signal.tipoSignal == 3)[0];
+
   let TENSION_PROMEDIO = 455;
   let CORRIENTE_PROMEDIO = 148;
   let NIVEL_DINAMICO = 60;
@@ -662,34 +667,56 @@ function updateDatosDependientes(DATA) {
     .getElementById("PerdidasDeFriccionEnLaColumna")
     ?.querySelector("input[type='text']");
 
-  if (diametroInput && diametroInput.value.trim() !== "") {
-    funcionesTabla.DiametroInternoDeLaTuberia = parseFloat(diametroInput.value);
-  }
-  if (frecuenciaInput && frecuenciaInput.value.trim() !== "") {
-    funcionesTabla.FrecuenciaDeRotacion = parseFloat(frecuenciaInput.value);
-  }
+  // Validaciones, si el inpiut esta vacio usar los datos por defecto
   if (nivelDinamicoInput && nivelDinamicoInput.value.trim() !== "") {
     NIVEL_DINAMICO = parseFloat(nivelDinamicoInput.value);
+  } else if (nivelDinamicoInput) {
+    NIVEL_DINAMICO = parseFloat(nivelDinamicoInput.placeholder);
   }
+
   if (nivelEstaticoInput && nivelEstaticoInput.value.trim() !== "") {
     NIVEL_ESTATICO = parseFloat(nivelEstaticoInput.value);
+  } else if (nivelEstaticoInput) {
+    NIVEL_ESTATICO = parseFloat(nivelEstaticoInput.placeholder);
   }
+
+  if (diametroInput && diametroInput.value.trim() !== "") {
+    funcionesTabla.DiametroInternoDeLaTuberia = parseFloat(diametroInput.value);
+  } else if (diametroInput) {
+    funcionesTabla.DiametroInternoDeLaTuberia = parseFloat(
+      diametroInput.placeholder
+    );
+  }
+
+  if (frecuenciaInput && frecuenciaInput.value.trim() !== "") {
+    funcionesTabla.FrecuenciaDeRotacion = parseFloat(frecuenciaInput.value);
+  } else if (frecuenciaInput) {
+    funcionesTabla.FrecuenciaDeRotacion = parseFloat(
+      frecuenciaInput.placeholder
+    );
+  }
+
   if (perdidasFriccionInput && perdidasFriccionInput.value.trim() !== "") {
     funcionesTabla.PerdidasDeFriccionEnLaColumna = parseFloat(
       perdidasFriccionInput.value
+    );
+  } else if (perdidasFriccionInput) {
+    funcionesTabla.PerdidasDeFriccionEnLaColumna = parseFloat(
+      perdidasFriccionInput.placeholder
     );
   }
 
   const _potenciaEntrada = funcionesTabla.PotenciaDeEntrada(
     CORRIENTE_PROMEDIO,
     TENSION_PROMEDIO,
-    FACTOR_POTENCIA_PROM.valor
+    FACTOR_POTENCIA_PROM.valor / 100
   );
 
   const _lecturaManometro = funcionesTabla.LecturaManometroDescarga(
     presion.valor
   );
-  const _gasto = funcionesTabla.Gasto(_lecturaManometro);
+
+  const _gasto = funcionesTabla.Gasto(gasto.valor);
   const _presionDescarga = funcionesTabla.PresionDescarga(
     funcionesTabla.NivelTuberiaDeDescarga,
     _lecturaManometro
@@ -714,7 +741,10 @@ function updateDatosDependientes(DATA) {
     parseFloat(_cargaDescarga)
   );
 
-  const _potenciaSalida = funcionesTabla.PotenciaDeSalida(_gasto, _cargaTotal);
+  const _potenciaSalida = funcionesTabla.PotenciaDeSalida(
+    gasto.valor / 1000,
+    _cargaTotal
+  );
 
   const _abatimiento = funcionesTabla.Abatimiento(
     NIVEL_DINAMICO,
@@ -727,7 +757,7 @@ function updateDatosDependientes(DATA) {
   );
 
   const _rendimientoHidra = funcionesTabla.RendimientoHidraulico(
-    _gasto,
+    gasto.valor / 1000,
     _abatimiento
   );
 
