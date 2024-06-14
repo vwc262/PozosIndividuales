@@ -27,7 +27,6 @@ window.onload = () => {
 
 function INIT() {
   initLogin();
-  InitParoArranque(PROYECTO);
   ClickEvents();
   fetchTablaSimplificada(PROYECTO)
     .then((response) => {
@@ -35,6 +34,7 @@ function INIT() {
 
       UpdateUI(DATA_GLOBAL);
       InitMap(DATA_GLOBAL);
+      InitParoArranque(PROYECTO, DATA_GLOBAL);
     })
     .catch((error) => {
       console.error("Error:", error);
@@ -55,13 +55,14 @@ function INIT() {
   }, 10000);
 }
 
-function UpdateUI(DATA) {
+function UpdateUI(DATA, PROYECTO) {
   $header_title.textContent = DATA.nombre;
   setHeaderEnlace(DATA);
   setFechaHeader(DATA);
   setSeñales();
   setBombaImg();
   setAlertasIcons();
+  InitParoArranque(PROYECTO, DATA_GLOBAL);
 }
 
 function ClickEvents() {
@@ -139,7 +140,7 @@ function FechaFormateada(TIEMPO) {
 function setBombaImg() {
   const SIGNALS = DATA_GLOBAL.signals;
 
-  //console.log(SIGNALS);
+  //console.log(SIGNALS[3]);
 
   SIGNALS.forEach((signal) => {
     switch (signal.tipoSignal) {
@@ -429,4 +430,4 @@ function createBombaCarrusel(SIGNAL) {
   $arranque__bombas.append(div);
 }
 
-export { INIT };
+export { INIT, DATA_GLOBAL };

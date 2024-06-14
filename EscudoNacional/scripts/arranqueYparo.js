@@ -28,23 +28,20 @@ let codigo;
 let isOnState = true;
 
 let proyecto;
-
-let ID_ESTACION_COMANDO = 0;
+let DATOS = [];
+let SITIO_ESTADO = 0;
 
 const images = [
   "https://virtualwavecontrol.com.mx/RecursosWeb/Client/PozosSistemaLerma/Control/BTN_ON.png?v=1",
   "https://virtualwavecontrol.com.mx/RecursosWeb/Client/PozosSistemaLerma/Control/BTN_STOP.png?v=1",
 ];
 
-function InitParoArranque(PROYECTO) {
+function InitParoArranque(PROYECTO, DATA_GLOBAL) {
+  DATOS = DATA_GLOBAL;
   proyecto = PROYECTO;
-  ClickEvents();
+  SITIO_ESTADO = DATOS.enlace;
 
-  if (proyecto == EnumProyecto.Sorpasso) {
-    ID_ESTACION_COMANDO = 62;
-  } else if (proyecto == EnumProyecto.Escudo) {
-    ID_ESTACION_COMANDO = 63;
-  }
+  ClickEvents();
 }
 
 function ClickEvents() {
@@ -115,11 +112,11 @@ function CambiarAccion(ev) {
 function ArmarCodigo() {
   let $Bomba = document.querySelector(".itemBombaImg");
 
-  //const ID_ESTACION = 62;
+  const ID_ESTACION = 62;
   const ENCODER_ON = 1;
   const ENCODER_OFF = 2;
 
-  const estacion = ID_ESTACION_COMANDO << 8;
+  const estacion = ID_ESTACION << 8;
   const ordinal = ($Bomba.ordinal || 0) << 4;
   const encoder = isOnState ? ENCODER_ON : ENCODER_OFF;
 
@@ -166,7 +163,7 @@ async function EnviarComando() {
   const perillaBomba = $Bomba.perilla;
   const valorBomba = $Bomba.enLinea;
 
-  if (enLinea == 1) {
+  if (SITIO_ESTADO == 1 || SITIO_ESTADO == 2) {
     if (perillaBomba == 1) {
       if (
         valorBomba == EnumValorBomba.Arrancada ||
@@ -228,7 +225,7 @@ async function ObtenerEstadoComando() {
 
         ALERT_SETTED = true;
       } else if (ESTADO_AUX === EnumEstadoComando.Ejecutado && !ALERT_SETTED) {
-        showModal("Estado Comando", "Hubo un error al ejecutar el comando");
+        showModal("Estado Comando", "El estado se ejecutó correctamente");
         clearInterval(_interval);
         ALERT_SETTED = true;
       }
@@ -250,7 +247,6 @@ async function ObtenerEstadoComando() {
         clearInterval(_interval);
       }
     } catch (error) {
-      console.error("Error al obtener el estado del comando:", error);
       clearInterval(_interval);
     }
   }, 2000);
