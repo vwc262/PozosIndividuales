@@ -765,18 +765,30 @@ function updateDatosDependientes(DATA) {
     "NivelTuberiaDeDescarga",
     `${funcionesTabla.NivelTuberiaDeDescarga} m`
   );
-  updateElement("LecturaManometroDescarga", `${_lecturaManometro} m`);
-  updateElement("PresionDescarga", `${_presionDescarga} m`);
-  updateElement("AreaTuberiaDescarga", `${_areaTuberiaDescarga} m²`);
-  updateElement("Gasto", `${_gasto} m³/s`);
-  updateElement("CargaDeVelocidad", `${_cargaVelocidad} m`);
-  updateElement("CargaALaDescarga", `${_cargaDescarga} m`);
-  updateElement("CargaTotal", `${_cargaTotal} m`);
-  updateElement("PotenciaDeEntrada", `${_potenciaEntrada} kW`);
-  updateElement("PotenciaDeSalida", `${_potenciaSalida} kW`);
-  updateElement("EficienciaElectromecanica", `${_eficienciaElectro} %`);
-  updateElement("Abatimiento", `${_abatimiento} m`);
-  updateElement("RendimientoHidraulico", `${_rendimientoHidra} l/s/m`);
+  updateElement(
+    "LecturaManometroDescarga",
+    `${_lecturaManometro.toFixed(2)} m`
+  );
+  updateElement("PresionDescarga", `${_presionDescarga.toFixed(2)} m`);
+  updateElement(
+    "AreaTuberiaDescarga",
+    `${parseFloat(_areaTuberiaDescarga).toFixed(2)} m²`
+  );
+  updateElement("Gasto", `${parseFloat(_gasto).toFixed(2)} m³/s`);
+  updateElement("CargaDeVelocidad", `${_cargaVelocidad.toFixed(2)} m`);
+  updateElement("CargaALaDescarga", `${_cargaDescarga.toFixed(2)} m`);
+  updateElement("CargaTotal", `${_cargaTotal.toFixed(2)} m`);
+  updateElement("PotenciaDeEntrada", `${_potenciaEntrada.toFixed(2)} kW`);
+  updateElement("PotenciaDeSalida", `${_potenciaSalida.toFixed(2)} kW`);
+  updateElement(
+    "EficienciaElectromecanica",
+    `${_eficienciaElectro.toFixed(2)} %`
+  );
+  updateElement("Abatimiento", `${_abatimiento.toFixed(2)} m`);
+  updateElement(
+    "RendimientoHidraulico",
+    `${_rendimientoHidra.toFixed(2)} l/s/m`
+  );
 }
 
 function setBombaEstado(SIGNAL) {
