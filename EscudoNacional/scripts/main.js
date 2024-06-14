@@ -48,10 +48,9 @@ let EficienciaElectromecanica;
 let Abatimiento;
 let RendimientoHidraulico;
 
-let PROYECTO = EnumProyecto.Escudo;
+let PROYECTO = EnumProyecto.Sorpasso;
 
 if (PROYECTO != EnumProyecto.Escudo) {
-  console.log("hola");
   $señalesCat.style.display = "none";
   $calculoCat.style.display = "none";
 }
@@ -205,7 +204,7 @@ function INIT() {
     .then((response) => {
       DATA_GLOBAL = response[0];
 
-      console.log(DATA_GLOBAL);
+      //console.log(DATA_GLOBAL);
 
       UpdateUI(DATA_GLOBAL);
       ClickEvents(DATA_GLOBAL);
@@ -213,7 +212,7 @@ function INIT() {
       InitMap(DATA_GLOBAL);
     })
     .catch((error) => {
-      console.error("Error:", error);
+      //console.error("Error:", error);
     });
 
   setInterval(() => {
@@ -235,7 +234,7 @@ function UpdateUI(DATA) {
   $header_title.textContent = DATA.nombre;
   setHeaderEnlace(DATA);
   setFechaHeader(DATA);
-  setBombaImg();
+  setBombaImg(DATA);
   setAlertasIcons();
 
   // Determinar qué tabla está activa
@@ -322,7 +321,7 @@ function FechaFormateada(TIEMPO) {
   return `${day}/${month}/${year}, ${hours}:${minutes}`;
 }
 
-function setBombaImg() {
+function setBombaImg(DATA) {
   const SIGNALS = DATA_GLOBAL.signals;
 
   //console.log(SIGNALS);
@@ -330,7 +329,7 @@ function setBombaImg() {
   SIGNALS.forEach((signal) => {
     switch (signal.tipoSignal) {
       case 7:
-        setBombaEstado(signal);
+        setBombaEstado(signal, DATA);
         break;
     }
   });
@@ -508,6 +507,7 @@ function createTableSeñales() {
 function createTableCalculo(DATA) {
   const $TBody = document.getElementById("señales-tbody");
   $TBody.innerHTML = "";
+
   // Filtrar y crear filas y celdas
   datosTabla.forEach((dato) => {
     // Filtrar datos vacíos
@@ -520,13 +520,29 @@ function createTableCalculo(DATA) {
     dato.celdas.forEach((celda, index) => {
       const $TD = document.createElement("td");
       if (index === 1 && dato.type === "caja") {
-        // Se crean los input text y submit  si tienen la clase 'caja'
+        // Se crean los input text y submit si tienen la clase 'caja'
         const $inputTXT = document.createElement("input");
         const $inputSUBMIT = document.createElement("input");
         $inputSUBMIT.type = "submit";
         $inputSUBMIT.value = "Enviar";
         $inputTXT.type = "text";
         $inputTXT.placeholder = celda;
+
+        // aceptar solo valores num
+        $inputTXT.addEventListener("input", (e) => {
+          let value = e.target.value;
+          // Reemplaza todos los caracteres no num
+          value = value.replace(/[^0-9.]/g, "");
+
+          // solo haya un punto decimal
+          const parts = value.split(".");
+          if (parts.length > 2) {
+            value = parts[0] + "." + parts.slice(1).join("");
+          }
+
+          e.target.value = value;
+        });
+
         $TD.append($inputTXT, $inputSUBMIT);
 
         // ClickEvent de los submit
@@ -791,8 +807,9 @@ function updateDatosDependientes(DATA) {
   );
 }
 
-function setBombaEstado(SIGNAL) {
+function setBombaEstado(SIGNAL, DATA) {
   let Background;
+  let TIEMPO = DATA.tiempo;
 
   switch (SIGNAL.valor) {
     case 0:
@@ -815,6 +832,8 @@ function setBombaEstado(SIGNAL) {
       break;
   }
 
+  //console.log(DATA);
+
   $BombaEstado.style.background = `url(${Background})`;
   $BombaEstado.style.backgroundSize = "cover";
   $BombaEstado.style.backgroundRepeat = "no-repeat";
@@ -825,7 +844,7 @@ function setAlertasIcons() {
 
   $alertasIcons.innerHTML = "";
 
-  console.log(SIGNALS);
+  //console.log(SIGNALS);
 
   SIGNALS.forEach((signal) => {
     switch (signal.tipoSignal) {

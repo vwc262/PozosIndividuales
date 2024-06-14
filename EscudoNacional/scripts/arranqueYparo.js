@@ -29,6 +29,8 @@ let isOnState = true;
 
 let proyecto;
 
+let ID_ESTACION_COMANDO = 0;
+
 const images = [
   "https://virtualwavecontrol.com.mx/RecursosWeb/Client/PozosSistemaLerma/Control/BTN_ON.png?v=1",
   "https://virtualwavecontrol.com.mx/RecursosWeb/Client/PozosSistemaLerma/Control/BTN_STOP.png?v=1",
@@ -37,6 +39,12 @@ const images = [
 function InitParoArranque(PROYECTO) {
   proyecto = PROYECTO;
   ClickEvents();
+
+  if (proyecto == EnumProyecto.Sorpasso) {
+    ID_ESTACION_COMANDO = 62;
+  } else if (proyecto == EnumProyecto.Escudo) {
+    ID_ESTACION_COMANDO = 63;
+  }
 }
 
 function ClickEvents() {
@@ -107,13 +115,13 @@ function CambiarAccion(ev) {
 function ArmarCodigo() {
   let $Bomba = document.querySelector(".itemBombaImg");
 
-  const ID_ESTACION = 62;
+  //const ID_ESTACION = 62;
   const ENCODER_ON = 1;
   const ENCODER_OFF = 2;
 
-  const estacion = ID_ESTACION << 8;
+  const estacion = ID_ESTACION_COMANDO << 8;
   const ordinal = ($Bomba.ordinal || 0) << 4;
-  const encoder = isOn ? ENCODER_ON : ENCODER_OFF;
+  const encoder = isOnState ? ENCODER_ON : ENCODER_OFF;
 
   return estacion | ordinal | encoder;
 }
@@ -164,7 +172,7 @@ async function EnviarComando() {
         valorBomba == EnumValorBomba.Arrancada ||
         valorBomba == EnumValorBomba.Apagada
       ) {
-        let accion = document.querySelector(".accionImg").isOn;
+        let accion = document.querySelector(".accionImg").isOnState;
         if (accion && valorBomba != EnumValorBomba.Arrancada) {
           await RequestComando(); // para prender
         } else if (!accion && valorBomba != EnumValorBomba.Apagada) {
