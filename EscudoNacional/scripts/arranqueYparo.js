@@ -112,7 +112,7 @@ function CambiarAccion(ev) {
 function ArmarCodigo() {
   let $Bomba = document.querySelector(".itemBombaImg");
 
-  const ID_ESTACION = 62;
+  const ID_ESTACION = 63;
   const ENCODER_ON = 1;
   const ENCODER_OFF = 2;
 
