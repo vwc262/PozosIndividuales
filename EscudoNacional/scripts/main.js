@@ -49,7 +49,7 @@ let EficienciaElectromecanica;
 let Abatimiento;
 let RendimientoHidraulico;
 
-let PROYECTO = EnumProyecto.Sorpasso;
+let PROYECTO = EnumProyecto.Escudo;
 
 if (PROYECTO != EnumProyecto.Escudo) {
   $señalesCat.style.display = "none";
