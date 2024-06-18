@@ -61,7 +61,7 @@ async function performLogin(username, password) {
     const LOGIN_RESULT = await Fetcher.Instance.RequestData(
       "login",
       RequestType.POST,
-      new Credentials(username, password, EnumProyecto.Escudo),
+      new Credentials(username, password, EnumProyecto.Sorpasso),
       true
     );
 
@@ -99,7 +99,7 @@ async function performLogout(username, password) {
     const LOGOUT_RESULT = await Fetcher.Instance.RequestData(
       "logout",
       RequestType.POST,
-      new Credentials(username, password, EnumProyecto.Escudo),
+      new Credentials(username, password, EnumProyecto.Sorpasso),
       true
     );
 

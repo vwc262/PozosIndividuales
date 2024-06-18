@@ -136,7 +136,7 @@ async function RequestComando() {
 
   try {
     const COMANDO_RESULT = await Fetcher.Instance.RequestData(
-      `${EnumControllerMapeo.INSERTCOMANDO}?IdProyecto=${proyecto}`,
+      `${EnumControllerMapeo.INSERTCOMANDO}?IdProyecto=${EnumProyecto.Sorpasso}`,
       RequestType.POST,
       {
         Usuario: `web24-${usuario}`,
@@ -207,7 +207,7 @@ async function ObtenerEstadoComando() {
   const _interval = setInterval(async () => {
     try {
       const RESULT_INTERVAL = await Fetcher.Instance.RequestData(
-        `${EnumControllerMapeo.READESTADOCOMANDO}?IdProyecto=${proyecto}`,
+        `${EnumControllerMapeo.READESTADOCOMANDO}?IdProyecto=${EnumProyecto.Sorpasso}`,
         RequestType.POST,
         {
           Usuario: `web24-${USUARIO_COMANDO}`,
