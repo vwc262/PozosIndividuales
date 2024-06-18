@@ -36,12 +36,13 @@ const images = [
   "https://virtualwavecontrol.com.mx/RecursosWeb/Client/PozosSistemaLerma/Control/BTN_STOP.png?v=1",
 ];
 
+ClickEvents();
+
 function InitParoArranque(PROYECTO, DATA_GLOBAL) {
   DATOS = DATA_GLOBAL;
   proyecto = PROYECTO;
   SITIO_ESTADO = DATOS.enlace;
 
-  ClickEvents();
 }
 
 function ClickEvents() {
