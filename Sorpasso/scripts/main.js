@@ -88,27 +88,39 @@ function ClickEvents() {
 function setHeaderEnlace(DATA) {
   $header__status.innerHTML = "";
 
+  //console.log(DATA.tiempo);
+
   const ENLACE_VALUE = DATA.enlace;
   let ENLACE_txt;
   let ENLACE_color;
 
-  switch (ENLACE_VALUE) {
-    case 0:
-      ENLACE_txt = "Fuera de línea";
-      ENLACE_color = "red";
-      break;
-    case 1:
-      ENLACE_txt = "En línea";
-      ENLACE_color = "rgb(0, 128, 0)";
-      break;
-    case 2:
-      ENLACE_txt = "En línea";
-      ENLACE_color = "rgb(0, 128, 0)";
-      break;
-    case 3:
-      ENLACE_txt = "En línea";
-      ENLACE_color = "rgb(0, 128, 0)";
-      break;
+  const currentTIME = new Date();
+  const dataTIME = new Date(DATA.tiempo);
+  const timeDIFERENCIA = Math.abs(currentTIME - dataTIME);
+  const diferenciasMINUTOS = Math.floor(timeDIFERENCIA / (1000 * 60));
+
+  if (diferenciasMINUTOS > 5) {
+    ENLACE_txt = "Fuera de línea";
+    ENLACE_color = "red";
+  } else {
+    switch (ENLACE_VALUE) {
+      case 0:
+        ENLACE_txt = "Fuera de línea";
+        ENLACE_color = "red";
+        break;
+      case 1:
+        ENLACE_txt = "En línea";
+        ENLACE_color = "rgb(0, 128, 0)";
+        break;
+      case 2:
+        ENLACE_txt = "En línea";
+        ENLACE_color = "rgb(0, 128, 0)";
+        break;
+      case 3:
+        ENLACE_txt = "En línea";
+        ENLACE_color = "rgb(0, 128, 0)";
+        break;
+    }
   }
 
   $header__status.style.color = ENLACE_color;
