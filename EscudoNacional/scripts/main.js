@@ -19,6 +19,7 @@ const $alertasIcons = document.querySelector(".alertasIcons");
 const $arranque__bombas = document.querySelector(".arranque__bombas");
 const $señalesCat = document.querySelector("#señalesCat");
 const $calculoCat = document.querySelector("#calculoCat");
+const $perilla_estado = document.querySelector(".perilla_estado");
 
 let Presion_DeCampo;
 let Gasto_DeCampo;
@@ -199,10 +200,10 @@ window.onload = () => {
 
 function INIT() {
   initLogin();
-  InitParoArranque(PROYECTO);
   fetchTablaSimplificada(PROYECTO)
     .then((response) => {
       DATA_GLOBAL = response[0];
+      InitParoArranque(PROYECTO, DATA_GLOBAL);
 
       //console.log(DATA_GLOBAL);
 
@@ -236,6 +237,7 @@ function UpdateUI(DATA) {
   setFechaHeader(DATA);
   setBombaImg(DATA);
   setAlertasIcons();
+  InitParoArranque(PROYECTO, DATA_GLOBAL);
 
   // Determinar qué tabla está activa
   if ($señalesCat.classList.contains("catActive")) {
@@ -420,12 +422,15 @@ function createTableSeñales() {
         switch (signal.valor) {
           case 0:
             $TDValue.textContent = "Off";
+            $perilla_estado.textContent = "Off";
             break;
           case 1:
             $TDValue.textContent = "Remoto";
+            $perilla_estado.textContent = "Remoto";
             break;
           case 2:
             $TDValue.textContent = "Local";
+            $perilla_estado.textContent = "Local";
             break;
         }
         break;

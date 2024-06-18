@@ -18,6 +18,7 @@ const $TablaButton = document.querySelector("#tablaButton");
 const $Map = document.querySelector(".map__Container");
 const $alertasIcons = document.querySelector(".alertasIcons");
 const $arranque__bombas = document.querySelector(".arranque__bombas");
+const $perilla_estado = document.querySelector(".perilla_estado");
 
 let PROYECTO = EnumProyecto.Sorpasso;
 
@@ -215,12 +216,15 @@ function setSeñales() {
         switch (signal.valor) {
           case 0:
             $TDValue.textContent = "Off";
+            $perilla_estado.textContent = "Off";
             break;
           case 1:
             $TDValue.textContent = "Remoto";
+            $perilla_estado.textContent = "Remoto";
             break;
           case 2:
             $TDValue.textContent = "Local";
+            $perilla_estado.textContent = "Local";
             break;
         }
         break;
