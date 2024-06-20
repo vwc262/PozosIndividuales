@@ -123,7 +123,7 @@ function ArmarCodigo() {
   return estacion | ordinal | encoder;
 }
 
-async function RequestComando() {
+async function  RequestComando() {
   let $Bomba = document.querySelector(".itemBombaImg");
   const usuario = USUARIO.value;
   const codigo = ArmarCodigo();
@@ -206,7 +206,7 @@ async function ObtenerEstadoComando() {
   const _interval = setInterval(async () => {
     try {
       const RESULT_INTERVAL = await Fetcher.Instance.RequestData(
-        `${EnumControllerMapeo.READESTADOCOMANDO}?IdProyecto=${EnumProyecto.Sorpasso}`,
+        `${EnumControllerMapeo.READESTADOCOMANDO}?IdProyecto=${EnumProyecto.Escudo}`,
         RequestType.POST,
         {
           Usuario: `web24-${USUARIO_COMANDO}`,
