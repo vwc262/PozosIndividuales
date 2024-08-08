@@ -72,7 +72,7 @@ const datosTabla = [
 
   {
     clase: "de-campo",
-    type: "caja",
+    type: "",
     celdas: ["Nivel dinámico", "60"],
     id: "Nivel_DeCampo",
   },
@@ -565,7 +565,7 @@ function createTableCalculo(DATA) {
         // ClickEvent de los submit
         $inputSUBMIT.addEventListener("click", (e) => {
           e.preventDefault();
-          console.log(DATA);
+          //console.log(DATA);
           const newValue = $inputTXT.value;
           if (newValue.trim() !== "") {
             celda = newValue; // Actualizar el valor en los datos
@@ -624,6 +624,7 @@ function obtenerReferenciasTabla() {
 
 function updateDatosCampo(DATA) {
   const presion = DATA.signals.filter((signal) => signal.tipoSignal == 2)[0];
+  const nivel_dinamico = DATA.signals.filter((signal) => signal.tipoSignal == 1)[0]
   const gasto = DATA.signals.filter((signal) => signal.tipoSignal == 3)[0];
   let FACTOR_POTENCIA_PROM = DATA.signals.filter(
     (signal) => signal.tipoSignal == 19
@@ -636,6 +637,9 @@ function updateDatosCampo(DATA) {
     (signal) => signal.tipoSignal == 17
   )[3] ?? { valor: Math.random().toFixed(2) };
 
+  //console.log(DATA)
+
+  updateElement("Nivel_DeCampo", `${nivel_dinamico.valor} m`);
   updateElement("Presion_DeCampo", `${presion.valor} kg/cm²`);
   updateElement("Gasto_DeCampo", `${gasto.valor} l/s`);
   updateElement("FactorPotencia_DeCampo", `${FACTOR_POTENCIA_PROM.valor} %`);
@@ -664,28 +668,30 @@ function updateDatosDependientes(DATA) {
 
   let TENSION_PROMEDIO = 455;
   let CORRIENTE_PROMEDIO = 148;
-  let NIVEL_DINAMICO = 60;
-  let NIVEL_ESTATICO = 49;
+  // let NIVEL_DINAMICO = 60;
+  let NIVEL_ESTATICO = 59;
 
   let FACTOR_POTENCIA_PROM = DATA.signals.filter(
     (signal) => signal.tipoSignal == 19
   )[0];
+
+  let NIVEL_DINAMICO = DATA.signals.filter(
+    (signal) => signal.tipoSignal == 1
+  )[0].valor;
+
   // let TENSION_PROMEDIO = DATA.signals.filter(
   //   (signal) => signal.tipoSignal == 16
   // )[3];
   // let CORRIENTE_PROMEDIO = DATA.signals.filter(
   //   (signal) => signal.tipoSignal == 17
   // )[3];
-  // const NIVEL_DINAMICO = DATA.signals.filter(
-  //   (signal) => signal.tipoSignal == 1
-  // )[0];
   // const NIVEL_ESTATICO = DATA.signals.filter(
   //   (signal) => signal.tipoSignal == 1
   // )[1];
 
-  const nivelDinamicoInput = document
-    .getElementById("Nivel_DeCampo")
-    ?.querySelector("input[type='text']");
+  // const nivelDinamicoInput = document
+  //   .getElementById("Nivel_DeCampo")
+  //   ?.querySelector("input[type='text']");
   const nivelEstaticoInput = document
     .getElementById("NivelEstatico")
     ?.querySelector("input[type='text']");
@@ -700,11 +706,11 @@ function updateDatosDependientes(DATA) {
     ?.querySelector("input[type='text']");
 
   // Validaciones, si el inpiut esta vacio usar los datos por defecto
-  if (nivelDinamicoInput && nivelDinamicoInput.value.trim() !== "") {
-    NIVEL_DINAMICO = parseFloat(nivelDinamicoInput.value);
-  } else if (nivelDinamicoInput) {
-    NIVEL_DINAMICO = parseFloat(nivelDinamicoInput.placeholder);
-  }
+  // if (nivelDinamicoInput && nivelDinamicoInput.value.trim() !== "") {
+  //   NIVEL_DINAMICO = parseFloat(nivelDinamicoInput.value);
+  // } else if (nivelDinamicoInput) {
+  //   NIVEL_DINAMICO = parseFloat(nivelDinamicoInput.placeholder);
+  // }
 
   if (nivelEstaticoInput && nivelEstaticoInput.value.trim() !== "") {
     NIVEL_ESTATICO = parseFloat(nivelEstaticoInput.value);
