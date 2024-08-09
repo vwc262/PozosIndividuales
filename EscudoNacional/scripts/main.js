@@ -380,7 +380,7 @@ function createTableSeñales() {
 
   $TBody.innerHTML = "";
 
-  console.log(SIGNALS);
+  //console.log(SIGNALS);
 
   // Función para crear filas de señales
   const createSignalRow = (signal) => {
