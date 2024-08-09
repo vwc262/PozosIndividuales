@@ -380,7 +380,7 @@ function createTableSeñales() {
 
   $TBody.innerHTML = "";
 
-  //console.log(SIGNALS);
+  console.log(SIGNALS);
 
   // Función para crear filas de señales
   const createSignalRow = (signal) => {
@@ -481,7 +481,7 @@ function createTableSeñales() {
     }
 
     // Si el valor está fuera de rango para tipoSignal 1, 2, 3, 4
-    if (signal.dentroRango == 0 && [1, 2, 3, 4].includes(signal.tipoSignal)) {
+    if (signal.dentroRango == 0 && [1, 2, 3, 4, 16, 17].includes(signal.tipoSignal)) {
       $TDValue.textContent = "- - -";
     }
 
@@ -639,7 +639,8 @@ function updateDatosCampo(DATA) {
 
   //console.log(DATA)
 
-  updateElement("Nivel_DeCampo", `${nivel_dinamico.valor} m`);
+  if (nivel_dinamico.dentroRango == 0 ) updateElement("Nivel_DeCampo", `- - -`);
+  else updateElement("Nivel_DeCampo", `${nivel_dinamico.valor} m`);
   updateElement("Presion_DeCampo", `${presion.valor} kg/cm²`);
   updateElement("Gasto_DeCampo", `${gasto.valor} l/s`);
   updateElement("FactorPotencia_DeCampo", `${FACTOR_POTENCIA_PROM.valor} %`);
