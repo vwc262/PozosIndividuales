@@ -656,8 +656,8 @@ function updateDatosCampo(DATA) {
   updateElement("NivelEstatico", `${nivel_estatico.valor} m`);
   updateElement("FactorPotencia_DeCampo", `${FACTOR_POTENCIA_PROM.valor} %`);
 
-  //updateElement("Corriente_DeCampo", `${CORRIENTE_PROMEDIO.valor} A`);
-  //updateElement("Tension_DeCampo", `${TENSION_PROMEDIO.valor} V`);
+  updateElement("Corriente_DeCampo", `${CORRIENTE_PROMEDIO.valor} A`);
+  updateElement("Tension_DeCampo", `${TENSION_PROMEDIO.valor} V`);
 }
 
 function updateElement(id, value) {
@@ -859,13 +859,13 @@ function setBombaEstado(SIGNAL, DATA) {
     case 2:
       $BombaEstado.style.display = "block";
       Background =
-        "https://virtualwavecontrol.com.mx/RecursosWeb/Client/PozosSistemaLerma/Sitios/LN%20116/Particular/b/b1_1.png?v=1";
+        "https://virtualwavecontrol.com.mx/RecursosWeb/Client/PozosSistemaLerma/Sitios/LN%20116/Particular/b/b1_2.png?v=1";
       // "https://virtualwavecontrol.com.mx/RecursosWeb/Client/PozosSistemaLerma/Sitios/LN%20148/Particular/b/b1_2.png?v=1";
       break;
     case 3:
       $BombaEstado.style.display = "block";
       Background =
-        "https://virtualwavecontrol.com.mx/RecursosWeb/Client/PozosSistemaLerma/Sitios/LN%20116/Particular/b/b1_1.png?v=1";
+        "https://virtualwavecontrol.com.mx/RecursosWeb/Client/PozosSistemaLerma/Sitios/LN%20116/Particular/b/b1_3.png?v=1";
       // "https://virtualwavecontrol.com.mx/RecursosWeb/Client/PozosSistemaLerma/Sitios/LN%20148/Particular/b/b1_3.png?v=1";
       break;
   }
