@@ -78,7 +78,7 @@ const datosTabla = [
   },
   {
     clase: "de-campo",
-    type: "caja",
+    type: "",
     celdas: ["Nivel estático", "59"],
     id: "NivelEstatico",
   },
@@ -481,7 +481,10 @@ function createTableSeñales() {
     }
 
     // Si el valor está fuera de rango para tipoSignal 1, 2, 3, 4
-    if (signal.dentroRango == 0 && [1, 2, 3, 4, 16, 17].includes(signal.tipoSignal)) {
+    if (
+      signal.dentroRango == 0 &&
+      [1, 2, 3, 4, 16, 17].includes(signal.tipoSignal)
+    ) {
       $TDValue.textContent = "- - -";
     }
 
@@ -624,7 +627,12 @@ function obtenerReferenciasTabla() {
 
 function updateDatosCampo(DATA) {
   const presion = DATA.signals.filter((signal) => signal.tipoSignal == 2)[0];
-  const nivel_dinamico = DATA.signals.filter((signal) => signal.tipoSignal == 1)[0]
+  const nivel_dinamico = DATA.signals.filter(
+    (signal) => signal.tipoSignal == 1
+  )[0];
+  
+  const nivel_estatico = DATA.signals.filter((signal) => signal.tipoSignal == 1) [1]
+
   const gasto = DATA.signals.filter((signal) => signal.tipoSignal == 3)[0];
   let FACTOR_POTENCIA_PROM = DATA.signals.filter(
     (signal) => signal.tipoSignal == 19
@@ -639,10 +647,11 @@ function updateDatosCampo(DATA) {
 
   //console.log(DATA)
 
-  if (nivel_dinamico.dentroRango == 0 ) updateElement("Nivel_DeCampo", `- - -`);
+  if (nivel_dinamico.dentroRango == 0) updateElement("Nivel_DeCampo", `- - -`);
   else updateElement("Nivel_DeCampo", `${nivel_dinamico.valor} m`);
   updateElement("Presion_DeCampo", `${presion.valor} kg/cm²`);
   updateElement("Gasto_DeCampo", `${gasto.valor} l/s`);
+  updateElement("NivelEstatico", `${nivel_estatico.valor} m`);
   updateElement("FactorPotencia_DeCampo", `${FACTOR_POTENCIA_PROM.valor} %`);
 
   //updateElement("Corriente_DeCampo", `${CORRIENTE_PROMEDIO.valor} A`);
@@ -670,7 +679,7 @@ function updateDatosDependientes(DATA) {
   let TENSION_PROMEDIO = 455;
   let CORRIENTE_PROMEDIO = 148;
   // let NIVEL_DINAMICO = 60;
-  let NIVEL_ESTATICO = 59;
+  // let NIVEL_ESTATICO = 59;
 
   let FACTOR_POTENCIA_PROM = DATA.signals.filter(
     (signal) => signal.tipoSignal == 19
@@ -686,9 +695,9 @@ function updateDatosDependientes(DATA) {
   // let CORRIENTE_PROMEDIO = DATA.signals.filter(
   //   (signal) => signal.tipoSignal == 17
   // )[3];
-  // const NIVEL_ESTATICO = DATA.signals.filter(
-  //   (signal) => signal.tipoSignal == 1
-  // )[1];
+  const NIVEL_ESTATICO = DATA.signals.filter(
+    (signal) => signal.tipoSignal == 1
+  )[1].valor;
 
   // const nivelDinamicoInput = document
   //   .getElementById("Nivel_DeCampo")
@@ -713,11 +722,11 @@ function updateDatosDependientes(DATA) {
   //   NIVEL_DINAMICO = parseFloat(nivelDinamicoInput.placeholder);
   // }
 
-  if (nivelEstaticoInput && nivelEstaticoInput.value.trim() !== "") {
-    NIVEL_ESTATICO = parseFloat(nivelEstaticoInput.value);
-  } else if (nivelEstaticoInput) {
-    NIVEL_ESTATICO = parseFloat(nivelEstaticoInput.placeholder);
-  }
+  // if (nivelEstaticoInput && nivelEstaticoInput.value.trim() !== "") {
+  //   NIVEL_ESTATICO = parseFloat(nivelEstaticoInput.value);
+  // } else if (nivelEstaticoInput) {
+  //   NIVEL_ESTATICO = parseFloat(nivelEstaticoInput.placeholder);
+  // }
 
   if (diametroInput && diametroInput.value.trim() !== "") {
     funcionesTabla.DiametroInternoDeLaTuberia = parseFloat(diametroInput.value);
