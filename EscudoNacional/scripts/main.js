@@ -630,8 +630,10 @@ function updateDatosCampo(DATA) {
   const nivel_dinamico = DATA.signals.filter(
     (signal) => signal.tipoSignal == 1
   )[0];
-  
-  const nivel_estatico = DATA.signals.filter((signal) => signal.tipoSignal == 1) [1]
+
+  const nivel_estatico = DATA.signals.filter(
+    (signal) => signal.tipoSignal == 1
+  )[1];
 
   const gasto = DATA.signals.filter((signal) => signal.tipoSignal == 3)[0];
   let FACTOR_POTENCIA_PROM = DATA.signals.filter(
@@ -851,17 +853,20 @@ function setBombaEstado(SIGNAL, DATA) {
     case 1:
       $BombaEstado.style.display = "block";
       Background =
-        "https://virtualwavecontrol.com.mx/RecursosWeb/Client/PozosSistemaLerma/Sitios/LN%20148/Particular/b/b1_1.png?v=1";
+        "https://virtualwavecontrol.com.mx/RecursosWeb/Client/PozosSistemaLerma/Sitios/LN%20116/Particular/b/b1_1.png?v=1";
+      // "https://virtualwavecontrol.com.mx/RecursosWeb/Client/PozosSistemaLerma/Sitios/LN%20148/Particular/b/b1_1.png?v=1";
       break;
     case 2:
       $BombaEstado.style.display = "block";
       Background =
-        "https://virtualwavecontrol.com.mx/RecursosWeb/Client/PozosSistemaLerma/Sitios/LN%20148/Particular/b/b1_2.png?v=1";
+        "https://virtualwavecontrol.com.mx/RecursosWeb/Client/PozosSistemaLerma/Sitios/LN%20116/Particular/b/b1_1.png?v=1";
+      // "https://virtualwavecontrol.com.mx/RecursosWeb/Client/PozosSistemaLerma/Sitios/LN%20148/Particular/b/b1_2.png?v=1";
       break;
     case 3:
       $BombaEstado.style.display = "block";
       Background =
-        "https://virtualwavecontrol.com.mx/RecursosWeb/Client/PozosSistemaLerma/Sitios/LN%20148/Particular/b/b1_3.png?v=1";
+        "https://virtualwavecontrol.com.mx/RecursosWeb/Client/PozosSistemaLerma/Sitios/LN%20116/Particular/b/b1_1.png?v=1";
+      // "https://virtualwavecontrol.com.mx/RecursosWeb/Client/PozosSistemaLerma/Sitios/LN%20148/Particular/b/b1_3.png?v=1";
       break;
   }
 
