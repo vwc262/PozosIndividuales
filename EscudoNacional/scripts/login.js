@@ -14,7 +14,7 @@ const PASSWORD = document.querySelector("#password");
 const $arranqueContainer = document.querySelector(".arranque__paro");
 
 // Lista de usuarios permitidos
-const users = ["admin"];
+const users = ["admin", "Poncho"];
 
 // Variable para el temporizador
 let logoutTimer;
