@@ -1,0 +1,207 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body,
+html {
+  width: 100%;
+  height: 100dvh;
+  background-color: black;
+  font-family: sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 1) 0%,
+    rgb(35 41 46) 22%,
+    rgb(36 44 58) 68%,
+    rgb(72 92 139) 84%,
+    rgb(113 139 182) 100%,
+    rgb(132 162 217) 100%
+  );
+  height: 50px;
+}
+
+.header_container {
+  display: flex;
+  align-items: center;
+  position: relative;
+  height: 100%;
+}
+
+.header_buttons {
+  display: flex;
+  position: absolute;
+}
+
+.header_btn {
+  padding: 5px 5px;
+  color: white;
+  border: none;
+  cursor: pointer;
+  background: none;
+  transition: color 0.2s ease-in;
+}
+
+.header_btn:hover {
+  color: goldenrod;
+}
+
+.header_title {
+  margin: 0 auto;
+  text-align: center;
+  color: white;
+}
+
+.header_nombre_sitio {
+  text-shadow: -2px 0px 3px #817676;
+  font-weight: bold;
+  font-size: 25px;
+}
+
+.header_datos {
+  font-size: 15px;
+}
+
+.header_fecha {
+  color: goldenrod;
+}
+
+.header_estado {
+  color: red;
+}
+
+.header_title {
+  width: 100%;
+  height: 100%;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.header_nombre_sitio {
+  text-shadow: -2px 0px 3px #817676;
+  font-weight: bold;
+  font-size: 25px;
+}
+
+.header_datos {
+  font-size: 15px;
+}
+
+.header_fecha {
+  color: goldenrod;
+}
+
+.header_estado {
+  color: red;
+}
+
+main {
+  background-color: rgb(180, 180, 107);
+  flex: 1;
+}
+
+main {
+  background: url(https://virtualwavecontrol.com.mx/RecursosWeb/Client/PozosSistemaLerma/Sitios/LN%20116/Particular/fondo.jpg?v=1);
+}
+
+.mapa_container {
+  position: absolute;
+  left: 0;
+  top: 55px;
+  width: 25%;
+  height: 500px;
+  max-height: 500px;
+  background: aliceblue;
+  opacity: 1;
+  border-radius: 5px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  transition: opacity 0.5s ease, max-height 0.5s ease;
+}
+
+.mapa_container.hidden {
+  opacity: 0;
+  max-height: 0;
+}
+
+.table_container {
+  width: 25%;
+  margin: 0;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  position: absolute;
+  top: 55px;
+  left: 0;
+  opacity: 1;
+  max-height: 500px;
+  overflow-y: auto; /* Habilitar scroll vertical */
+  transition: opacity 0.5s ease, max-height 0.5s ease;
+}
+
+.table_container.hidden {
+  opacity: 0;
+  max-height: 0;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed; /* Asegura que las celdas mantengan su tamaño */
+}
+
+thead {
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 1) 0%,
+    rgb(35 41 46) 22%,
+    rgb(36 44 58) 68%,
+    rgb(72 92 139) 84%,
+    rgb(113 139 182) 100%,
+    rgb(132 162 217) 100%
+  );
+  color: white;
+  position: sticky;
+  top: 0; /* Fijar el encabezado */
+  z-index: 1; /* Asegura que el encabezado esté siempre visible */
+}
+
+th,
+td {
+  padding: 10px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+
+tbody tr:hover {
+  background-color: #f1f1f1;
+}
+
+.img_bomba_estado {
+  width: 100%;
+  height: 100%;
+}
+
+#map {
+  width: 100%;
+  height: 100%;
+}
+
+@media only screen and (max-width: 600px) {
+  .table_container {
+    overflow: auto;
+    width: 100%;
+  }
+
+  .mapa_container {
+    width: 100%;
+  }
+}
