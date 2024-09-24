@@ -111,6 +111,8 @@ main {
 
 main {
   background: url(https://virtualwavecontrol.com.mx/RecursosWeb/Client/PozosSistemaLerma/Sitios/LN%20116/Particular/fondo.jpg?v=1);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .mapa_container {
@@ -188,6 +190,8 @@ tbody tr:hover {
 .img_bomba_estado {
   width: 100%;
   height: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 #map {
