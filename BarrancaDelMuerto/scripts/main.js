@@ -66,10 +66,10 @@ function asignarDatosHeader(data) {
 
   if (data.enlace === 0) {
     estadoSpan.textContent = "Fuera de línea";
-    estadoSpan.style.color = "rgb(0, 128, 0)";
+    estadoSpan.style.color = "red";
   } else {
     estadoSpan.textContent = "En línea";
-    estadoSpan.style.color = "red";
+    estadoSpan.style.color = "rgb(0, 128, 0)";
   }
 }
 
