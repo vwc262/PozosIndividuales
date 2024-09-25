@@ -120,7 +120,7 @@ function startLogoutTimer(username, password) {
 
   // cerrar sesión después de 10 minutos (600,000 ms)
   logoutTimer = setTimeout(() => {
-    performLogin(username, password);
+    handleLogout();
     alert(
       "Sesión cerrada automáticamente después de 10 minutos de inactividad."
     );
