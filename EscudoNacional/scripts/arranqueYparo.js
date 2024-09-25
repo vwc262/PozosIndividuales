@@ -123,7 +123,7 @@ function ArmarCodigo() {
   return estacion | ordinal | encoder;
 }
 
-async function  RequestComando() {
+async function RequestComando() {
   let $Bomba = document.querySelector(".itemBombaImg");
   const usuario = USUARIO.value;
   const codigo = ArmarCodigo();

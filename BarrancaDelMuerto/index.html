@@ -7,6 +7,8 @@
   <title>Pozo Barranca del Muerto</title>
 
   <link rel="stylesheet" href="./styles/index.css">
+  <link rel="stylesheet" href="./styles/moda.css">
+  <link rel="stylesheet" href="./styles/control_bombas.css">
 </head>
 
 <body>
@@ -17,14 +19,23 @@
         <button id="header_Tabla" class="header_btn">Tabla</button>
       </div>
       <div class="header_title">
-        <span class="header_nombre_sitio">Nombre del Sitio</span>
+        <span class="header_nombre_sitio"></span>
         <div class="header_datos">
-          <span class="header_fecha">00/00/0000, 00:00hrs - </span>
-          <span class="header_estado">Fuera de Línea</span>
+          <span class="header_fecha"></span>
+          <span class="header_estado"></span>
         </div>
       </div>
+      <button id="header_Ajustes" class="header_btn header_btn_right">login</button>
     </div>
+
   </header>
+
+  <nav>
+    <div>
+      <img id="btn_control_bombas"
+        src="https://virtualwavecontrol.com.mx/RecursosWeb/Client/PozosSistemaLerma/Control/controlPanel.png?v=1">
+    </div>
+  </nav>
 
   <main>
     <div class="table_container hidden">
@@ -45,10 +56,60 @@
     <div class="img_bomba_estado"></div>
   </main>
 
+  <div id="modal" class="modal hidden_modal">
+    <div class="modal_content">
+      <h2>Inicio de sesión</h2>
+      <input id="user" type="text" placeholder="Usuario" class="modal_input" />
+      <input id="password" type="password" placeholder="Contraseña" class="modal_input" />
+      <button id="confirmar_modal" class="modal_btn_confirmar">Confirmar</button>
+      <button id="close_modal" class="modal_btn">Cerrar</button>
+    </div>
+  </div>
+
+  <div class="control_bombas_container">
+    <div class="base_arranque">
+      <img id="base_control_bomba"
+        src="https://virtualwavecontrol.com.mx/RecursosWeb/Client/PozosSistemaLerma/Control/transition.gif?v=1">
+    </div>
+    <div class="panel_container">
+      <div class="control_header">
+        <div class="header_close">
+          <img id="btn_close_panel"
+            src="https://virtualwavecontrol.com.mx/RecursosWeb/Client/PozosSistemaLerma/General/close_nrm.png?v=1">
+        </div>
+        <span>Control Bombas</span>
+      </div>
+      <div class="control_estado_perilla">
+        <span class="txt_estado">Estado perilla: </span>
+        <span id="txt_estado_perilla" class="txt_estado_perilla"></span>
+      </div>
+      <div class="control_bomba_container">
+        <span id="control_bba_estado"></span>
+        <img id="control_img_bomba"
+          src="https://virtualwavecontrol.com.mx/RecursosWeb/Client/PozosSistemaLerma/Control/btn_bomba.png?v=1">
+        <span id="control_bba_nombre"></span>
+      </div>
+      <div class="control_botones_accion">
+        <div class="btn_acciones">
+          <span id="control_txt_apagar">Apagar</span>
+          <img id="control_switch"
+            src="https://virtualwavecontrol.com.mx/RecursosWeb/Client/PozosSistemaLerma/Control/BTN_ON.png?v=1">
+          <span id="control_txt_encender">Encender</span>
+        </div>
+        <div class="btn_confirmar">
+          <div class="img_confirmar"></div>
+          <span id="control_txt_confirmar">Encender B1</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </body>
 
 <script>(g => { var h, a, k, p = "The Google Maps JavaScript API", c = "google", l = "importLibrary", q = "__ib__", m = document, b = window; b = b[c] || (b[c] = {}); var d = b.maps || (b.maps = {}), r = new Set, e = new URLSearchParams, u = () => h || (h = new Promise(async (f, n) => { await (a = m.createElement("script")); e.set("libraries", [...r] + ""); for (k in g) e.set(k.replace(/[A-Z]/g, t => "_" + t[0].toLowerCase()), g[k]); e.set("callback", c + ".maps." + q); a.src = `https://maps.${c}apis.com/maps/api/js?` + e; d[q] = f; a.onerror = () => h = n(Error(p + " could not load.")); a.nonce = m.querySelector("script[nonce]")?.nonce || ""; m.head.append(a) })); d[l] ? console.warn(p + " only loads once. Ignoring:", g) : d[l] = (f, ...n) => r.add(f) && u().then(() => d[l](f, ...n)) })
     ({ key: "AIzaSyADj-4tE-dSFY6D83ytGt98HzpR9QBwX98", v: "beta" });</script>
 <script type="module" src="./scripts/main.js"></script>
+<script type="module" src="./scripts/login.js"></script>
+<script type="module" src="./scripts/control_bombas.js"></script>
 
 </html>
