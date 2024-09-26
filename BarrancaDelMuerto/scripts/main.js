@@ -138,20 +138,47 @@ function set_datos_bomba(perilla_info, bomba_info) {
 
 // Función para asignar los datos del header
 function asignarDatosHeader(data) {
+  let ENLACE_txt;
+  let ENLACE_color;
+
   const nombreSpan = document.querySelector(".header_nombre_sitio");
   const fechaSpan = document.querySelector(".header_fecha");
   const estadoSpan = document.querySelector(".header_estado");
+  const ENLACE_VALOR = data.enlace;
 
-  nombreSpan.textContent = data.nombre;
-  fechaSpan.textContent = formatearFecha(data.tiempo);
+  const currentTIME = new Date();
+  const dataTime = new Date(data.tiempo);
+  const timeDIFERENCIA = Math.abs(currentTIME - dataTime);
+  const diferenciasMINUTOS = Math.floor(timeDIFERENCIA / (1000 * 60));
 
-  if (data.enlace === 0) {
-    estadoSpan.textContent = "Fuera de línea";
-    estadoSpan.style.color = "red";
+  if (diferenciasMINUTOS > 5) {
+    ENLACE_txt = "Fuera de línea";
+    ENLACE_color = "red";
   } else {
-    estadoSpan.textContent = "En línea";
-    estadoSpan.style.color = "rgb(0, 128, 0)";
+    switch (ENLACE_VALOR) {
+      case 0:
+        ENLACE_txt = "Fuera de línea";
+        ENLACE_color = "red";
+        break;
+      case 1:
+        ENLACE_txt = "En línea";
+        ENLACE_color = "rgb(0, 128, 0)";
+        break;
+      case 2:
+        ENLACE_txt = "En línea";
+        ENLACE_color = "rgb(0, 128, 0)";
+        break;
+      case 3:
+        ENLACE_txt = "En línea";
+        ENLACE_color = "rgb(0, 128, 0)";
+        break;
+    }
   }
+
+  fechaSpan.textContent = formatearFecha(data.tiempo);
+  nombreSpan.textContent = data.nombre;
+  estadoSpan.textContent = ENLACE_txt;
+  estadoSpan.style.color = ENLACE_color;
 }
 
 // Función para crear la tabla de señales con unidades
@@ -174,7 +201,7 @@ function crearTablaSignals(signals) {
     const celdaValor = document.createElement("td");
     const unidad = obtenerUnidad(signal);
 
-    if (signal.dentroRango)  {
+    if (signal.dentroRango) {
       celdaValor.textContent = `${signal.valor} ${unidad}`; // Mostrar valor con unidad si esta en rango
     } else {
       celdaValor.textContent = `---`; // Mostrar --- si no esta en rango
