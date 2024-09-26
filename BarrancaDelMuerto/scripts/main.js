@@ -173,7 +173,12 @@ function crearTablaSignals(signals) {
 
     const celdaValor = document.createElement("td");
     const unidad = obtenerUnidad(signal);
-    celdaValor.textContent = `${signal.valor} ${unidad}`; // Mostrar valor con unidad
+
+    if (signal.dentroRango)  {
+      celdaValor.textContent = `${signal.valor} ${unidad}`; // Mostrar valor con unidad si esta en rango
+    } else {
+      celdaValor.textContent = `---`; // Mostrar --- si no esta en rango
+    }
 
     fila.appendChild(celdaNombre);
     fila.appendChild(celdaValor);
