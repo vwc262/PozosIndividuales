@@ -16,7 +16,7 @@ const PASSWORD = document.getElementById("password");
 const btnLoginLogout = document.getElementById("header_Ajustes");
 
 // Lista de usuarios permitidos
-const users = ["admin", "Poncho"];
+const users = ["admin", "Poncho", "abela"];
 
 // Variable para el temporizador
 let logoutTimer;
